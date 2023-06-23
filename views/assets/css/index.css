@@ -1,0 +1,137 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Raleway', sans-serif;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+a{
+    text-decoration: none;
+}
+
+
+.presentacion{
+    background-image: linear-gradient(to right, rgba(36, 57, 73, 0.699) 0%, rgba(81, 127, 164, 0.699) 100%),url(../img/header.webp);
+    width: 100%;
+    height: 650px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    overflow: hidden;
+}
+
+.texto-presentacion{
+    height: 500px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.texto-presentacion h1{
+    font-size: 70px;
+
+}
+
+.texto-presentacion p{
+    font-size: 25px;
+}
+
+.texto-presentacion a{
+    margin-top: 20px;
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 15px;
+    background-color: #084259;
+    border-radius: 10px;
+    color: white;
+}
+
+.svg-presentacion{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.container,
+.wave-container{
+    width: 90%;
+    max-width: 1000px;
+    overflow: hidden;
+    margin: auto;
+    padding: 0 0 80px 0;
+}
+
+.container{
+    padding: 100px 0;
+}
+
+.titulo{
+    font-weight: 300;
+    font-size: 40px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.titulo.izquierda{
+    text-align: left;
+}
+
+.page{
+    display: flex;
+    justify-content: space-between;
+}
+
+.page img{
+    width: 55%;
+}
+
+.page .contenedor-texto-diagnostico{
+    width: 40%;
+}
+
+.parrafo{
+    text-align: justify;
+    margin-bottom: 20px;
+}
+
+.learn-more{
+    display: inline-block;
+    background-image: linear-gradient(-225deg, #22E1FF 0%, #1D8FE1 48%, #625EB1 100%);
+    padding: 12px 15px;
+    border-radius: 10px;
+    color: white;
+    margin-top: 10px;
+}
+
+.mensaje{
+    background: #1D8FE1;
+    color: white;
+}
+
+.content-cards{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.card{
+    width: 30%;
+    text-align: center;
+    height: 300px;
+    box-shadow: 0 0 3px 0 rgba(0,0,0,.5);
+    transform: scale(1);
+    transition: transform 0.6s;
+
+}
