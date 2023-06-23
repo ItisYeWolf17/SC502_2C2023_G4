@@ -23,6 +23,7 @@ a{
     height: 650px;
     background-repeat: no-repeat;
     background-size: cover;
+    background-position: center;
     background-attachment: fixed;
     position: relative;
     overflow: hidden;
@@ -30,7 +31,7 @@ a{
 
 .texto-presentacion{
     height: 500px;
-    color: white;
+    color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -38,22 +39,26 @@ a{
 }
 
 .texto-presentacion h1{
-    font-size: 70px;
+    font-size: 60px;
 
 }
 
 .texto-presentacion p{
     font-size: 25px;
+    margin-bottom: 20px;
 }
 
 .texto-presentacion a{
-    margin-top: 20px;
     display: inline-block;
     text-decoration: none;
     padding: 12px 15px;
     background-color: #084259;
-    border-radius: 10px;
-    color: white;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.texto-presentacion a:hover{
+    background-color: #18608C;
 }
 
 .svg-presentacion{
@@ -65,7 +70,7 @@ a{
 
 .container,
 .wave-container{
-    width: 90%;
+    width: 100%;
     max-width: 1000px;
     overflow: hidden;
     margin: auto;
@@ -73,12 +78,12 @@ a{
 }
 
 .container{
-    padding: 100px 0;
+    padding: 80px 0;
 }
 
 .titulo{
     font-weight: 300;
-    font-size: 40px;
+    font-size: 35px;
     text-align: center;
     margin-bottom: 30px;
 }
@@ -93,7 +98,7 @@ a{
 }
 
 .page img{
-    width: 55%;
+    width: 48%;
 }
 
 .page .contenedor-texto-diagnostico{
@@ -109,9 +114,13 @@ a{
     display: inline-block;
     background-image: linear-gradient(-225deg, #22E1FF 0%, #1D8FE1 48%, #625EB1 100%);
     padding: 12px 15px;
-    border-radius: 10px;
-    color: white;
-    margin-top: 10px;
+    border-radius: 8px;
+    color: #fff;
+    margin-top: 20px;
+}
+
+.learn-more:hover{
+    background-image: linear-gradient(-225deg, #3D4E81 0%, #5753C9 48%, #6E7FF3 100%);
 }
 
 .mensaje{
@@ -119,19 +128,121 @@ a{
     color: white;
 }
 
+
+
 .content-cards{
     display: flex;
-    width: 100%;
-    justify-content: space-evenly;
+    justify-content: space-around;
     flex-wrap: wrap;
+    width: 100%;
+    margin: auto;
+    padding: 0 0 80px 0;
 }
 
 .card{
     width: 30%;
     text-align: center;
-    height: 300px;
-    box-shadow: 0 0 3px 0 rgba(0,0,0,.5);
+    height: 400px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, .5);
     transform: scale(1);
     transition: transform 0.6s;
 
+}
+
+.card:hover{
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, .5);
+    transform: scale(1.03);
+    cursor: pointer;
+}
+
+.card p{
+    font-weight: 300;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card svg{
+
+    margin: 30px 0 20px 0;
+    font-size: 30px;
+    fill: #084259;
+}
+
+.card h3{
+    font-size: 28px;
+    font-weight: 500;
+}
+
+.mensaje-final{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    background-color: #a6a6a60a;
+}
+
+.mensaje-final img{
+    width: 48%;
+}
+
+.mensaje-final .contenedor-texto-diagnostico{
+    width: 40%;
+}
+
+footer{
+    background: #18608C;
+    color: #fff;
+}
+
+.form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.input{
+    background: transparent;
+    border: 1px solid white;
+    color: white;
+    padding: 25px 10px;
+    border-radius: 10px;
+
+}
+
+.input::placeholder{
+    color: white;
+    font-family: 'Raleway', sans-serif;
+}
+
+input[type="text"], 
+input[type="email"]{
+    display: inline-block;
+    width: 49%;
+    margin-bottom: 30px;
+}
+
+.form textarea{
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+input[type="submit"]{
+    width: 50%;
+    text-align: center;
+    padding: 14px 0;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+input[type="submit"]:hover{
+    cursor: pointer;
+    background: #125773;
+
+}
+
+.input-center{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
 }
