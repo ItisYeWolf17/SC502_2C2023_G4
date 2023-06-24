@@ -140,17 +140,17 @@ a{
 }
 
 .card{
-    width: 30%;
+    width: 20%;
     text-align: center;
     height: 400px;
-    box-shadow: 0 0 3px 0 rgba(0, 0, 0, .5);
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, .75);
     transform: scale(1);
     transition: transform 0.6s;
 
 }
 
 .card:hover{
-    box-shadow: 0 0 6px 0 rgba(0, 0, 0, .5);
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, .85);
     transform: scale(1.03);
     cursor: pointer;
 }
