@@ -1,0 +1,170 @@
+label {
+    font-weight: bold;
+}
+
+th {
+    background-color: #18608C;
+    color: white;
+    padding: 1rem 0;
+}
+
+td {
+    padding: 1rem 0;
+}
+
+td {
+    border-bottom: 1px solid rgb(194, 194, 194);
+    text-align: center !important
+}
+
+tr:nth-child(even) {
+    background-color: rgb(240, 240, 240) !important;
+}
+
+
+tr:hover {
+    background-color: aliceblue !important;
+}
+
+tr {
+    max-width: 100% !important;
+}
+
+
+table {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+
+
+@media (max-width: 768px) {
+    .container-table table {
+        font-size: smaller !important;
+    }
+}
+
+@media (max-width: 510px) {
+    .btn-ver, .acciones {
+        display: none;
+
+    }
+}
+@media (max-width: 510px) {
+    th[data-col="acciones"],
+    td[data-col="btn-ver"]{
+        display: none;
+    }
+}
+
+
+.container-table {
+    width: 100%;
+    padding-left: 5% !important;
+    padding-right: 5% !important;
+    justify-content: center;
+}
+
+.container-table table td {
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+}
+
+.pagination {
+    color: #084259;
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    font-weight: bold;
+    
+}
+
+@media (max-width: 510px) {
+    .pagination{
+        gap: 0.3rem; 
+        padding-right: 5% !important;
+    }
+}
+@media (max-width: 510px) {
+    .container-table{
+        padding-left: 1% !important;
+        padding-right: 1% !important;
+    }
+}
+
+
+.page-item a {
+    border-radius: 5px;
+    border: 1px solid #18608C;
+    color: #18608C;
+
+}
+
+.page-item a:hover {
+    border-radius: 5px;
+    background-color: #18608C;
+    color: white;
+}
+
+.active a {
+    background-color: #18608C !important;
+    color: white !important;
+}
+
+.datatable {
+    border-radius: 10px !important;
+    box-shadow: 0 1.2rem 0.5rem rgba(0, 0, 0, 0.247);
+    overflow: hidden;
+}
+
+.form-control {
+    border-radius: 5px;
+    border: 1px solid rgb(194, 194, 194);
+}
+
+.page-link {
+    padding: 1rem;
+    color: black;
+}
+
+.dataTables_info {
+    max-width: 100% !important;
+    padding: 1rem !important;
+}
+
+.centered {
+    text-align: center !important;
+}
+
+.btn-ver {
+    margin-top: 0.5rem;
+    background-color: white;
+    color: #18608C;
+    border-radius: 5px;
+    border: 1px solid #18608C;
+}
+
+.btn-ver:hover {
+
+    background-color: #18608C;
+    color: white;
+}
+
+.form-control {
+    height: 3rem;
+    width: 50% !important;
+}
+
+.form-select {
+    border-radius: 5px;
+    border: 1px solid rgb(194, 194, 194);
+}
+
+.abrir-codigo {
+    display: flex;
+    justify-content: center;
+    margin-left: 20%;
+    margin-right: 20%;
+
+
+}
