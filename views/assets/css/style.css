@@ -413,9 +413,11 @@
     font-size: 18px;
   }
   .ventanaModal-inventario{
+    
     font-size: 20px;
-    width: 75%;
+    width: 70%;
     height: 100%;
+   
   }
   @media (max-width: 768px) {
     .ventanaModal-inventario{
@@ -582,8 +584,9 @@
 /*FOOTER*/
 
 .footer{
-  margin-top: 10rem;
+  margin-top: 15rem;
   background-color: #1D5D85;
+  bottom: 0;
 }
 .imagen-logo{
   background-color: white;
@@ -699,9 +702,19 @@
 .titulo-servicios h2:hover{
   color:#7D7D7D ;
 }
-.abrir-codigo h2{
-  margin-left: 1rem;
-  margin-right: 1rem;
+.abrir-codigo {
+  background-color: white;
+  margin: 0;
+  padding: 0.5rem;
+  color: #125773;
+  border-radius: 5px;
+  font-weight: bold;
+  border: 1px solid #125773;
+  margin-bottom: 2rem;
+}
+.abrir-codigo:hover{
+  background-color: #125773;
+  color: white;
 }
 
 /**-----FIN PAGINA INVENTARIO---------**/
