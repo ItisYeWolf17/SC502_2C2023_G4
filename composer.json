@@ -1,0 +1,19 @@
+{
+    "name": "bryancantillo/proyecto",
+    "description": "Proyecto Ambiente Web",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MVC\\" : "./", 
+            "Controller\\" : "./controller",
+            "Model\\" : "./models"
+        }
+    },
+    "authors": [
+        {
+            "name": "canntii",
+            "email": "bryandc681@gmail.com"
+        }
+    ],
+    "require": {}
+}
