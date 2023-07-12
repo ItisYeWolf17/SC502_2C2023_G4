@@ -627,7 +627,7 @@
 
 .formulario-crear {
   padding:2rem 2rem;
-  margin: 5rem 2.5rem 0 5rem;
+  margin: 5rem 2.5rem 0 2.5rem;
   border: 1px solid #d2d2d2;
   border-radius: 15px;
   display: block;
@@ -655,11 +655,11 @@
   border: 1px solid #d2d2d2;
   border-radius: 15px;
   text-align: center;
-  padding: 2rem 0;
-  margin-bottom: 3.5rem;
+  padding: 1.4rem 0;
+  margin-bottom: 3rem;
   width: 100rem;
   max-width: 100%;
-  margin-bottom: 3.5rem;
+
 }
 
 .btn-enviar {
@@ -718,3 +718,19 @@
 }
 
 /**-----FIN PAGINA INVENTARIO---------**/
+.alerta{
+  padding: 10px;
+  margin-top: 10px;
+  font-weight: bold;
+  width:100%;
+  display: block;
+  margin-top: 10px;
+  color: white;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.error{
+  background-color: red;
+}
+

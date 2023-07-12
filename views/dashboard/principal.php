@@ -40,7 +40,7 @@
     </article>
 
     <article class="card-servicio">
-      <a class="link" href="./clientes.html">
+      <a class="link" href="#">
         <div class="img-servicio">
           <img src="./assets/img/cliente.jpg">
         </div>
