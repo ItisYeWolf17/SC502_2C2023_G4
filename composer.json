@@ -5,8 +5,9 @@
     "autoload": {
         "psr-4": {
             "MVC\\" : "./", 
-            "Controller\\" : "./controller",
-            "Model\\" : "./models"
+            "Controllers\\" : "./controllers",
+            "Model\\" : "./models", 
+            "Classes\\" : "./classes"
         }
     },
     "authors": [
@@ -15,5 +16,7 @@
             "email": "bryandc681@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "phpmailer/phpmailer": "^6.8"
+    }
 }

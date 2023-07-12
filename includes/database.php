@@ -1,6 +1,7 @@
 <?php
 
-$db = mysqli_connect("localhost", "usuarioAKA", "AKApas.", "dbaka");
+$db = mysqli_connect("localhost", "usuarioAKA", "AKApas.", "dbAKA");
+
 
 
 if (!$db) {
@@ -9,3 +10,5 @@ if (!$db) {
     echo "error de depuración: " . mysqli_connect_error();
     exit;
 }
+
+

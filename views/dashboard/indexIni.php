@@ -6,7 +6,7 @@
     <title>Taller PKA</title>
     <script src="https://kit.fontawesome.com/3e4411f84c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
-    <link rel="stylesheet" href="./assets/css/index.css"/>
+    <link rel="stylesheet" href="assets/css/index.css"/>
     <link href="https://fonts.googleapis.com/css?family=Raleway:200,300,400,500&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -15,6 +15,7 @@
             <h1>Taller AK</h1>
             <p>Devolvemos el esplendor y resplandor a tu vehiculo</p>
             <a href="#contacto">Contactenos</a>
+            <a class="place-top" href="/login">Iniciar Sesion</a>
         </div>
         <div class="svg-presentacion" style="height: 150px; overflow: hidden;" >
             <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
@@ -76,7 +77,7 @@
     <section class="mensaje-final">
 
         <div class="container mensaje-final">
-            <img src="./assets/img/asesoria legal.jpg" alt="">
+            <img src="assets/img/asesoria legal.jpg" alt="">
             <div class="contenedor-texto-diagnostico">
                 <h2 class="titulo izquierda">Asesoría Legal</h2>
                 <p class="parrafo">El Taller AK es capaz de brindarle asesoría legal respecto a accidentes vividos.</p>
