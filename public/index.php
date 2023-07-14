@@ -8,7 +8,7 @@ $router = new Router();
 
 
 //Ruta principal 
-$router ->get('/', [LoginController::class, 'principal']);
+$router ->get('/', [LoginController::class, 'indexIni']);
 //Iniciar Sesion 
 $router ->get('/login', [LoginController::class, 'login' ]);
 $router ->post('/login', [LoginController::class, 'login' ]);
@@ -26,6 +26,9 @@ $router ->post('/crear', [LoginController::class, 'crear' ]);
 //Confirmar cuenta 
 $router ->get('/confirmar-cuenta', [LoginController::class, 'confirmar']);
 $router ->get('/mensaje', [LoginController::class, 'mensaje']);
+
+//Dashboard 
+$router ->get("/principal", [LoginController::class, 'principal']);
 
 $router -> comprobarRutas();
 

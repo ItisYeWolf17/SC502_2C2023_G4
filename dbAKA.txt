@@ -1,0 +1,580 @@
+-- MySQL Workbench Forward Engineering
+
+ 
+
+SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
+SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+
+ 
+
+-- -----------------------------------------------------
+-- Schema dbAKA
+-- -----------------------------------------------------
+
+ 
+
+-- -----------------------------------------------------
+-- Schema dbAKA
+-- -----------------------------------------------------
+CREATE SCHEMA IF NOT EXISTS `dbAKA` DEFAULT CHARACTER SET utf8 ;
+drop user if exists 'usuarioAKA';
+create user 'usuarioAKA'@'%' identified by 'AKApas.';
+/*Se asignan los prvilegios sobre la base de datos dbAKA al usuario creado */
+grant all privileges on dbAKA.* to 'usuarioAKA'@'%';
+flush privileges;
+USE `dbAKA` ;
+
+ 
+
+-- -----------------------------------------------------
+-- Table `dbAKA`.`Roles`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbAKA`.`Roles` (
+  `id_rol` INT NOT NULL AUTO_INCREMENT,
+  `rol_descripcion` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_rol`))
+ENGINE = InnoDB;
+
+ 
+
+
+-- -----------------------------------------------------
+-- Table `dbAKA`.`Usuarios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbAKA`.`Usuarios` (
+  `id_usuario` INT NOT NULL AUTO_INCREMENT,
+  `nombre_usuario` VARCHAR(50) NOT NULL,
+  `apellido_usuario` VARCHAR(75) NOT NULL,
+  `cedula_usuario` VARCHAR(15) NOT NULL,
+  `Roles_id_rol` INT NOT NULL,
+  PRIMARY KEY (`id_usuario`),
+  INDEX `fk_Usuarios_Roles_idx` (`Roles_id_rol` ASC) VISIBLE,
+  CONSTRAINT `fk_Usuarios_Roles`
+    FOREIGN KEY (`Roles_id_rol`)
+    REFERENCES `dbAKA`.`Roles` (`id_rol`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ 
+
+
+-- -----------------------------------------------------
+-- Table `dbAKA`.`Propietarios`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbAKA`.`Propietarios` (
+  `id_propietario` INT NOT NULL AUTO_INCREMENT,
+  `nombre_propietario` VARCHAR(50) NOT NULL,
+  `apellido_propietario` VARCHAR(50) NOT NULL,
+  `cedula_propietario` VARCHAR(15) NOT NULL,
+  PRIMARY KEY (`id_propietario`))
+ENGINE = InnoDB;
+
+ 
+
+
+-- -----------------------------------------------------
+-- Table `dbAKA`.`Archivos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbAKA`.`Archivos` (
+  `id_archivo` INT NOT NULL AUTO_INCREMENT,
+  `archivo` VARCHAR(255) NULL,
+  `Propietarios_id_propietario` INT NOT NULL,
+  PRIMARY KEY (`id_archivo`),
+  INDEX `fk_Archivos_Propietarios1_idx` (`Propietarios_id_propietario` ASC) VISIBLE,
+  CONSTRAINT `fk_Archivos_Propietarios1`
+    FOREIGN KEY (`Propietarios_id_propietario`)
+    REFERENCES `dbAKA`.`Propietarios` (`id_propietario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ 
+
+
+-- -----------------------------------------------------
+-- Table `dbAKA`.`Facturas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbAKA`.`Facturas` (
+  `id_factura` INT NOT NULL AUTO_INCREMENT,
+  `fecha` DATE NOT NULL,
+  `sub_total` DECIMAL(10,4) NOT NULL,
+  `total` DECIMAL(10,4) NOT NULL,
+  `Usuarios_id_usuario` INT NOT NULL,
+  `Propietarios_id_propietario` INT NOT NULL,
+  PRIMARY KEY (`id_factura`),
+  INDEX `fk_Facturas_Usuarios1_idx` (`Usuarios_id_usuario` ASC) VISIBLE,
+  INDEX `fk_Facturas_Propietarios1_idx` (`Propietarios_id_propietario` ASC) VISIBLE,
+  CONSTRAINT `fk_Facturas_Usuarios1`
+    FOREIGN KEY (`Usuarios_id_usuario`)
+    REFERENCES `dbAKA`.`Usuarios` (`id_usuario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Facturas_Propietarios1`
+    FOREIGN KEY (`Propietarios_id_propietario`)
+    REFERENCES `dbAKA`.`Propietarios` (`id_propietario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ 
+
+
+-- -----------------------------------------------------
+-- Table `dbAKA`.`Productos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbAKA`.`Productos` (
+  `id_producto` INT NOT NULL AUTO_INCREMENT,
+  `nombre_producto` VARCHAR(255) NOT NULL,
+  `iva_producto` DECIMAL(5,4) NOT NULL,
+  `costo_bruto` DECIMAL(10,4) NOT NULL,
+  `costo_iva` DECIMAL(10,4) NOT NULL,
+  `margen_utilidad` DECIMAL(5,4) NOT NULL,
+  `precio_cliente` DECIMAL(10,4) NOT NULL,
+  `cantidad` DECIMAL(10,4) NOT NULL,
+  PRIMARY KEY (`id_producto`))
+ENGINE = InnoDB;
+
+ 
+
+
+-- -----------------------------------------------------
+-- Table `dbAKA`.`Facturas_Productos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbAKA`.`Facturas_Productos` (
+  `Productos_id_producto` INT NOT NULL,
+  `Facturas_id_factura` INT NOT NULL,
+  `cantidad_producto` DECIMAL NOT NULL,
+  INDEX `fk_Facturas-Productos_Productos1_idx` (`Productos_id_producto` ASC) VISIBLE,
+  INDEX `fk_Facturas-Productos_Facturas1_idx` (`Facturas_id_factura` ASC) VISIBLE,
+  PRIMARY KEY (`Productos_id_producto`, `Facturas_id_factura`),
+  CONSTRAINT `fk_Facturas-Productos_Productos1`
+    FOREIGN KEY (`Productos_id_producto`)
+    REFERENCES `dbAKA`.`Productos` (`id_producto`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Facturas-Productos_Facturas1`
+    FOREIGN KEY (`Facturas_id_factura`)
+    REFERENCES `dbAKA`.`Facturas` (`id_factura`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ 
+
+
+-- -----------------------------------------------------
+-- Table `dbAKA`.`Vehiculos`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbAKA`.`Vehiculos` (
+  `id_vehiculo` INT NOT NULL AUTO_INCREMENT,
+  `placa_vehiculo` VARCHAR(45) NOT NULL,
+  `marca_vehiculo` VARCHAR(255) NOT NULL,
+  `year_vehiculo` VARCHAR(45) NOT NULL,
+  `Propietarios_id_propietario` INT NOT NULL,
+  PRIMARY KEY (`id_vehiculo`),
+  INDEX `fk_Vehiculos_Propietarios1_idx` (`Propietarios_id_propietario` ASC) VISIBLE,
+  CONSTRAINT `fk_Vehiculos_Propietarios1`
+    FOREIGN KEY (`Propietarios_id_propietario`)
+    REFERENCES `dbAKA`.`Propietarios` (`id_propietario`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ 
+
+
+-- -----------------------------------------------------
+-- Table `dbAKA`.`Sistemas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbAKA`.`Sistemas` (
+  `id_sistema` INT NOT NULL AUTO_INCREMENT,
+  `nombre_sistema` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id_sistema`))
+ENGINE = InnoDB;
+
+ 
+
+
+-- -----------------------------------------------------
+-- Table `dbAKA`.`Fallas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbAKA`.`Fallas` (
+  `id_falla` INT NOT NULL AUTO_INCREMENT,
+  `nombre_falla` VARCHAR(255) NOT NULL,
+  `precio_reparacion` DECIMAL(10,4) NOT NULL,
+  `iva` DECIMAL(5,4) NOT NULL,
+  `precio_reparacion_iva` DECIMAL(10,4) NOT NULL,
+  `Sistemas_id_sistema` INT NOT NULL,
+  PRIMARY KEY (`id_falla`),
+  INDEX `fk_Fallas_Sistemas1_idx` (`Sistemas_id_sistema` ASC) VISIBLE,
+  CONSTRAINT `fk_Fallas_Sistemas1`
+    FOREIGN KEY (`Sistemas_id_sistema`)
+    REFERENCES `dbAKA`.`Sistemas` (`id_sistema`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ 
+
+
+-- -----------------------------------------------------
+-- Table `dbAKA`.`Vehiculos_Fallas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbAKA`.`Vehiculos_Fallas` (
+  `Fallas_id_falla` INT NOT NULL,
+  `Vehiculos_id_vehiculo` INT NOT NULL,
+  INDEX `fk_Vehiculos-Fallas_Fallas1_idx` (`Fallas_id_falla` ASC) VISIBLE,
+  INDEX `fk_Vehiculos-Fallas_Vehiculos1_idx` (`Vehiculos_id_vehiculo` ASC) VISIBLE,
+  PRIMARY KEY (`Fallas_id_falla`, `Vehiculos_id_vehiculo`),
+  CONSTRAINT `fk_Vehiculos-Fallas_Fallas1`
+    FOREIGN KEY (`Fallas_id_falla`)
+    REFERENCES `dbAKA`.`Fallas` (`id_falla`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Vehiculos-Fallas_Vehiculos1`
+    FOREIGN KEY (`Vehiculos_id_vehiculo`)
+    REFERENCES `dbAKA`.`Vehiculos` (`id_vehiculo`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ 
+
+
+-- -----------------------------------------------------
+-- Table `dbAKA`.`Facturas_Fallas`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `dbAKA`.`Facturas_Fallas` (
+  `Facturas_id_factura` INT NOT NULL,
+  `Fallas_id_falla` INT NOT NULL,
+  INDEX `fk_Facturas-Fallas_Facturas1_idx` (`Facturas_id_factura` ASC) VISIBLE,
+  INDEX `fk_Facturas-Fallas_Fallas1_idx` (`Fallas_id_falla` ASC) VISIBLE,
+  CONSTRAINT `fk_Facturas-Fallas_Facturas1`
+    FOREIGN KEY (`Facturas_id_factura`)
+    REFERENCES `dbAKA`.`Facturas` (`id_factura`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_Facturas-Fallas_Fallas1`
+    FOREIGN KEY (`Fallas_id_falla`)
+    REFERENCES `dbAKA`.`Fallas` (`id_falla`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+ 
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+ 
+
+/*INSERTS PROPIETARIOS*/
+INSERT INTO propietarios (id_propietario, nombre_propietario, apellido_propietario, cedula_propietario)
+VALUES (1, 'Juan', 'Rojas', '123456789');
+
+ 
+
+INSERT INTO propietarios (id_propietario, nombre_propietario, apellido_propietario, cedula_propietario)
+VALUES (2, 'María', 'González', '987654321');
+
+ 
+
+INSERT INTO propietarios (id_propietario, nombre_propietario, apellido_propietario, cedula_propietario)
+VALUES (3, 'Carlos', 'Rodríguez', '456123789');
+
+ 
+
+INSERT INTO propietarios (id_propietario, nombre_propietario, apellido_propietario, cedula_propietario)
+VALUES (4, 'Ana', 'Chacón', '789456123');
+
+ 
+
+INSERT INTO propietarios (id_propietario, nombre_propietario, apellido_propietario, cedula_propietario)
+VALUES (5, 'Luis', 'Dias', '321789456');
+
+ 
+
+ 
+
+/*INSERTS VEHICULOS*/
+INSERT INTO vehiculos (id_vehiculo, placa_vehiculo, marca_vehiculo, year_vehiculo, Propietarios_id_propietario)
+VALUES (1, 'ABC123', 'Toyota', '2015', 1);
+
+ 
+
+INSERT INTO vehiculos (id_vehiculo, placa_vehiculo, marca_vehiculo, year_vehiculo, Propietarios_id_propietario)
+VALUES (2, 'DEF456', 'Honda', '2016', 2);
+
+ 
+
+INSERT INTO vehiculos (id_vehiculo, placa_vehiculo, marca_vehiculo, year_vehiculo, Propietarios_id_propietario)
+VALUES (3, 'GHI789', 'Ford', '2017', 3);
+
+ 
+
+INSERT INTO vehiculos (id_vehiculo, placa_vehiculo, marca_vehiculo, year_vehiculo, Propietarios_id_propietario)
+VALUES (4, 'JKL012', 'Chevrolet', '2018', 4);
+
+ 
+
+INSERT INTO vehiculos (id_vehiculo, placa_vehiculo, marca_vehiculo, year_vehiculo, Propietarios_id_propietario)
+VALUES (5, 'MNO345', 'Nissan', '2019', 5);
+
+ 
+
+ 
+
+/*INSERTS SISTEMAS*/
+INSERT INTO sistemas (id_sistema, nombre_sistema)
+VALUES (1, 'Transmisión');
+
+ 
+
+INSERT INTO sistemas (id_sistema, nombre_sistema)
+VALUES (2, 'Sistema de frenos');
+
+ 
+
+INSERT INTO sistemas (id_sistema, nombre_sistema)
+VALUES (3, 'Sistema eléctrico');
+
+ 
+
+INSERT INTO sistemas (id_sistema, nombre_sistema)
+VALUES (4, 'Sistema de escape');
+
+ 
+
+INSERT INTO sistemas (id_sistema, nombre_sistema)
+VALUES (5, 'Sistema de refrigeración');
+
+ 
+
+
+ALTER TABLE fallas 
+MODIFY nombre_falla VARCHAR(300);
+
+ 
+
+
+/*INSERTS FALLAS*/
+INSERT INTO fallas (id_falla, nombre_falla, precio_reparacion, iva, precio_reparacion_iva, sistemas_id_sistema)
+VALUES (1, 'Reemplazo de la transmisión automática', 2500.00, 0.13, 2500.00 + (2500.00*0.13), 1);
+
+ 
+
+INSERT INTO fallas (id_falla, nombre_falla, precio_reparacion, iva, precio_reparacion_iva, sistemas_id_sistema)
+VALUES (2, 'Reparación del sistema de frenos ABS', 1200.00, 0.13, 1200.00 + (1200.00*0.13), 2);
+
+ 
+
+INSERT INTO fallas (id_falla, nombre_falla, precio_reparacion, iva, precio_reparacion_iva, sistemas_id_sistema)
+VALUES (3, 'Reparación de cortocircuito en el sistema eléctrico', 800.00, 0.13, 800.00 + (800.00*0.13), 3);
+
+ 
+
+INSERT INTO fallas (id_falla, nombre_falla, precio_reparacion, iva, precio_reparacion_iva, sistemas_id_sistema)
+VALUES (4, 'Reemplazo del sistema de escape catalítico', 1500.00, 0.13, 1500.00 + (1500.00*0.13), 4);
+
+ 
+
+INSERT INTO fallas (id_falla, nombre_falla, precio_reparacion, iva, precio_reparacion_iva, sistemas_id_sistema)
+VALUES (5, 'Reparación de radiador', 1000.00, 0.13, 1000.00 + (1000.00*0.13), 5);
+
+ 
+
+ 
+
+/*INSERTS PRODUCTOS*/
+INSERT INTO Productos (id_producto, nombre_producto, iva_producto, costo_bruto, costo_iva, margen_utilidad, precio_cliente, cantidad)
+VALUES (1, 'Transmisión automática', 0.13, 1500.00, 1500.00*1.13, 0.3, (1500.00+1500.00*0.3+1500.00*0.13), 10);
+
+ 
+
+INSERT INTO Productos (id_producto, nombre_producto, iva_producto, costo_bruto, costo_iva, margen_utilidad, precio_cliente, cantidad)
+VALUES (2, 'Kit de frenos ABS', 0.13, 800.00, 800.00*1.13, 0.3, (800.00+800.00*0.3+800.00*0.13), 10);
+
+ 
+
+INSERT INTO Productos (id_producto, nombre_producto, iva_producto, costo_bruto, costo_iva, margen_utilidad, precio_cliente, cantidad)
+VALUES (3, 'Cableado eléctrico', 0.13, 300.00, 300.00*1.13, 0.3, (300.00+300.00*0.3+300.00*0.13), 10);
+
+ 
+
+INSERT INTO Productos (id_producto, nombre_producto, iva_producto, costo_bruto, costo_iva, margen_utilidad, precio_cliente, cantidad)
+VALUES (4, 'Sistema de escape catalítico', 0.13, 1000.00, 1000.00*1.13, 0.3, (1000.00+1000.00*0.3+1000.00*0.13), 10);
+
+ 
+
+INSERT INTO Productos (id_producto, nombre_producto, iva_producto, costo_bruto, costo_iva, margen_utilidad, precio_cliente, cantidad)
+VALUES (5, 'Radiador del motor', 0.13, 500.00, 500.00*1.13, 0.3, (500.00+500.00*0.3+500.00*0.13), 10);
+
+ 
+
+INSERT INTO Productos (id_producto, nombre_producto, iva_producto, costo_bruto, costo_iva, margen_utilidad, precio_cliente, cantidad)
+VALUES (6, 'Filtro de aire', 0.13, 50.00, 50.00*1.13, 0.3, (50.00+50.00*0.3+50.00*0.13), 20);
+
+ 
+
+INSERT INTO Productos (id_producto, nombre_producto, iva_producto, costo_bruto, costo_iva, margen_utilidad, precio_cliente, cantidad)
+VALUES (7, 'Bujías de encendido', 0.13, 20.00, 20.00*1.13, 0.3, (20.00+20.00*0.3+20.00*0.13), 30);
+
+ 
+
+INSERT INTO Productos (id_producto, nombre_producto, iva_producto, costo_bruto, costo_iva, margen_utilidad, precio_cliente, cantidad)
+VALUES (8, 'Amortiguadores', 0.13, 200.00, 200.00*1.13, 0.3, (200.00+200.00*0.3+200.00*0.13), 15);
+
+ 
+
+INSERT INTO Productos (id_producto, nombre_producto, iva_producto, costo_bruto, costo_iva, margen_utilidad, precio_cliente, cantidad)
+VALUES (9, 'Aceite de motor', 0.13, 10.00, 10.00*1.13, 0.3, (10.00+10.00*0.3+10.00*0.13), 50);
+
+ 
+
+INSERT INTO Productos (id_producto, nombre_producto, iva_producto, costo_bruto, costo_iva, margen_utilidad, precio_cliente, cantidad)
+VALUES (10, 'Batería de automóvil', 0.13, 100.00, 100.00*1.13, 0.3, (100.00+100.00*0.3+100.00*0.13), 10);
+
+ 
+
+ 
+
+/*INSERTS ROLES*/
+INSERT INTO Roles(id_rol, rol_descripcion) VALUES (1, 'Administrador');
+INSERT INTO Roles(id_rol, rol_descripcion) VALUES (2, 'Mecanico');
+
+ 
+
+ 
+
+/*INSERTS USUARIOS*/
+INSERT INTO Usuarios (id_usuario, nombre_usuario, apellido_usuario, cedula_usuario, Roles_id_rol)
+VALUES (1, 'Ricardo', 'Avila', '123456789', 1);
+
+ 
+
+INSERT INTO Usuarios (id_usuario, nombre_usuario, apellido_usuario, cedula_usuario, Roles_id_rol)
+VALUES (2, 'María', 'González', '987654321', 2);
+
+ 
+
+INSERT INTO Usuarios (id_usuario, nombre_usuario, apellido_usuario, cedula_usuario, Roles_id_rol)
+VALUES (3, 'Pedro', 'Montes', '456789123', 2);
+
+ 
+
+INSERT INTO Usuarios (id_usuario, nombre_usuario, apellido_usuario, cedula_usuario, Roles_id_rol)
+VALUES (4, 'Ana', 'Rodríguez', '321987654', 2);
+
+ 
+
+INSERT INTO Usuarios (id_usuario, nombre_usuario, apellido_usuario, cedula_usuario, Roles_id_rol)
+VALUES (5, 'Carlos', 'García', '789123456', 2);
+
+ 
+
+ 
+
+/*INSERTS VEHICULOS_FALLAS*/
+INSERT INTO Vehiculos_Fallas(Vehiculos_id_vehiculo, Fallas_id_falla)
+VALUES (1, 1);
+
+ 
+
+INSERT INTO vehiculos_fallas (Vehiculos_id_vehiculo, Fallas_id_falla)
+VALUES (2, 2);
+
+ 
+
+INSERT INTO vehiculos_fallas (Vehiculos_id_vehiculo, Fallas_id_falla)
+VALUES (3, 3);
+
+ 
+
+INSERT INTO vehiculos_fallas (Vehiculos_id_vehiculo, Fallas_id_falla)
+VALUES (4, 4);
+
+ 
+
+INSERT INTO vehiculos_fallas (Vehiculos_id_vehiculo, Fallas_id_falla)
+VALUES (5, 5);
+
+ 
+
+
+/*PROCESO ALMACENADO PARA CREAR FACTURA*/
+
+ 
+
+DELIMITER $$
+CREATE PROCEDURE InsertFacturaFallaProducto(
+    IN _factura_id INT, IN _fecha DATE, 
+    IN _propietario_id INT, IN _usuario_id INT,
+    IN _falla_id INT, IN _producto_id INT, IN _cantidad INT
+)
+BEGIN
+    DECLARE _subtotal DECIMAL(10,2);
+    DECLARE _total DECIMAL(10,2);
+    DECLARE _precio_producto DECIMAL(10,2);
+
+ 
+
+    -- Calcula el subtotal y total basados en los productos
+    SELECT precio_cliente INTO _precio_producto
+    FROM Productos
+    WHERE id_producto = _producto_id;
+
+ 
+
+    SET _subtotal = _precio_producto * _cantidad;
+    SET _total = _subtotal * 1.13;
+
+ 
+
+    -- Inserta la factura
+    INSERT INTO Facturas (id_factura, fecha, sub_total, total, Propietarios_id_propietario, Usuarios_id_usuario)
+    VALUES (_factura_id, _fecha, _subtotal, _total, _propietario_id, _usuario_id);
+
+ 
+
+    -- Inserta el detalle de la factura en Facturas_Fallas
+    INSERT INTO Facturas_Fallas (Facturas_id_factura, Fallas_id_falla)
+    VALUES (_factura_id, _falla_id);
+
+ 
+
+    -- Inserta el detalle de la factura en Facturas_Productos
+    INSERT INTO Facturas_Productos (Facturas_id_factura, Productos_id_producto, cantidad_producto)
+    VALUES (_factura_id, _producto_id, _cantidad);
+END$$
+DELIMITER ;
+
+ 
+
+CALL InsertFacturaFallaProducto(1, '2023-07-10', 1, 1, 1, 1, 10);
+CALL InsertFacturaFallaProducto(2, '2023-07-11', 2, 2, 2, 2, 5);
+CALL InsertFacturaFallaProducto(3, '2023-07-12', 3, 3, 3, 3, 7);
+
+ 
+/*FIN PROCESO ALMACENADO PARA CREAR FACTURA*/
+
+ 
+
+ALTER TABLE usuarios 
+ADD password VARCHAR(60);
+ALTER TABLE usuarios 
+ADD correo VARCHAR(100);
+
+ 
+
+ALTER TABLE usuarios 
+ADD token VARCHAR(60);
+
+ 
+
+UPDATE usuarios
+SET correo = 'carlos@gmail.com'
+WHERE id_usuario = 5;

@@ -7,6 +7,16 @@ btnEnviar.addEventListener("click", function(event){
     event.preventDefault(); //Para evitar que la pagina parpadee cuando el btn es submit
     if(lablCorreo.value == "bcantillo@ufide.com" && lblPassword.value == "hola123"){
         window.location.href ='principal.html';
+    }else if(lablCorreo.value == "" && lblPassword.value == ""){
+        swal.fire({
+            title: `Debes de completar los datos`,
+            confirmButtonColor: '#0B3B59',
+            icon: 'error',
+            customClass:{
+                popup:'ventanaModal'
+            }
+        }); 
+        lblPassword.value = "";    
     }else{
         console.log(lablCorreo.value);
         swal.fire({
@@ -16,6 +26,7 @@ btnEnviar.addEventListener("click", function(event){
             customClass:{
                 popup:'ventanaModal'
             }
-        });     
+        });  
+        lblPassword.value = "";   
     }
 })

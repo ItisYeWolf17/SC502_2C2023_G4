@@ -5,12 +5,12 @@
             <img src="./assets/img/logo.png">
         </div>
     </header>
-
+    <?php include_once __DIR__ . "/../templates/alertas.php"; ?>
     <div class="formulario-crear">
         <form class="formulario" method="POST" action="/login">
             <div class="campo">
                 <label class="campo__label" for="mail">Correo</label>
-                <input class="campo__field" type="text" name="mail" id="mail" placeholder="correo@coreo.com">
+                <input class="campo__field" type="text" name="correo" id="correo" placeholder="correo@coreo.com" value="<?php echo s($auth->correo);?>">
             </div>
             <div class="campo">
                 <label class="campo__label" for="password">Clave</label>
@@ -40,7 +40,7 @@
         </div>
     </footer>
 
-    <script src="../views/assets/js/login.js"></script>
+    <!--<script src="./assets/js/login.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 
