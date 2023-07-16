@@ -60,12 +60,12 @@ btnCreaCodigo.addEventListener("click", function () {
     });
 })
 
-let dataTable; 
-let dataTableIsInitialized = false; 
+let dataTable;
+let dataTableIsInitialized = false;
 
 const dataTableOptions = {
     pageLength: 3,
-    destroy:true,
+    destroy: true,
     language: {
         lengthMenu: "Mostrar _MENU_ registros por página",
         zeroRecords: "Ningún usuario encontrado",
@@ -83,8 +83,8 @@ const dataTableOptions = {
     }
 };
 
-const initDataTable = async() =>{
-    if(dataTableIsInitialized){
+const initDataTable = async () => {
+    if (dataTableIsInitialized) {
         dataTable.destroy();
     }
 
@@ -94,13 +94,13 @@ const initDataTable = async() =>{
 
     dataTableIsInitialized = true;
 }
-const listProductos = async() => {
-    try{
+const listProductos = async () => {
+    try {
         const response = await fetch("http://localhost:3000/api/inventario");
-        const productos = await  response.json();
+        const productos = await response.json();
         console.log(productos);
         let content = ``;
-        productos.forEach((productos, index)=>{
+        productos.forEach((productos) => {
             content += `
             <tr>
                 <td>${productos.id_producto}</td>
@@ -108,17 +108,19 @@ const listProductos = async() => {
                 <td>${productos.costo_iva}</td>
                 <td>${productos.cantidad}</td>
                 <td>${productos.precio_cliente}</td>
-                <td><button class="btn-ver">Docs</button> <button class="btn-ver">Editar</button> <button class="btn-ver">Eliminar</button></td>
+                <td><button class="btn-ver" data-id=${productos.id_producto}>Docs</button> 
+                <button class="btn-ver btn-editar" data-id=${productos.id_producto}>Editar</button>
+                 <button class="btn-ver" data-id=${productos.id_producto}>Eliminar</button></td>
             </tr>`;
         });
         tableBody_users.innerHTML = content;
-    }catch(ex){
+    } catch (ex) {
         alert(ex)
 
     }
 };
 
-window.addEventListener("load", async()=>{
+window.addEventListener("load", async () => {
     await initDataTable();
 
 });
