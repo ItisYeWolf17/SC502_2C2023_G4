@@ -2,6 +2,8 @@
 
 require_once __DIR__ . '/../includes/app.php';
 
+use Controllers\APIController;
+use Controllers\InventarioController;
 use Controllers\LoginController;
 use MVC\Router;
 $router = new Router();
@@ -29,6 +31,13 @@ $router ->get('/mensaje', [LoginController::class, 'mensaje']);
 
 //Dashboard 
 $router ->get("/principal", [LoginController::class, 'principal']);
+
+
+//Restringido 
+$router->get("/inventario", [InventarioController::class, 'inventario']);
+
+//Api de inventario 
+$router->get('/api/inventario', [APIController::class, 'index']);
 
 $router -> comprobarRutas();
 

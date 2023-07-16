@@ -1,4 +1,6 @@
-
+<?php
+session_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +21,7 @@
       </div>
       <nav class="navegacion-principal">
         <a href="/login">Cerrar Sesión</a>
-        <a href="#">Bryan Cantillo</a>
+        <a href="/informacionUsuario"><?php echo $_SESSION['nombre']; ?></a>
       </nav>
     </div>
   </header>
@@ -51,7 +53,7 @@
     </article>
 
     <article class="card-servicio">
-      <a class="link" href="./inventario.html">
+      <a class="link" href="/inventario">
         <div class="img-servicio">
           <img src="./assets/img/inventario.webp">
         </div>

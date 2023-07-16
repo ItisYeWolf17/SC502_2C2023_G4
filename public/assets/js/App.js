@@ -88,26 +88,26 @@ const initDataTable = async() =>{
         dataTable.destroy();
     }
 
-    await listUsers();
+    await listProductos();
 
     dataTable = $("#datatable_users").DataTable(dataTableOptions);
 
     dataTableIsInitialized = true;
 }
-const listUsers = async() => {
+const listProductos = async() => {
     try{
-        const response = await fetch("https://jsonplaceholder.typicode.com/users");
-        const users = await  response.json();
-        console.log(users);
+        const response = await fetch("http://localhost:3000/api/inventario");
+        const productos = await  response.json();
+        console.log(productos);
         let content = ``;
-        users.forEach((user, index)=>{
+        productos.forEach((productos, index)=>{
             content += `
             <tr>
-                <td>${index + 1}</td>
-                <td>${user.name}</td>
-                <td>${user.email}</td>
-                <td>${user.address.city}</td>
-                <td>${user.company.name}</td>
+                <td>${productos.id_producto}</td>
+                <td>${productos.nombre_producto}</td>
+                <td>${productos.costo_iva}</td>
+                <td>${productos.cantidad}</td>
+                <td>${productos.precio_cliente}</td>
                 <td><button class="btn-ver">Docs</button> <button class="btn-ver">Editar</button> <button class="btn-ver">Eliminar</button></td>
             </tr>`;
         });
@@ -122,6 +122,7 @@ window.addEventListener("load", async()=>{
     await initDataTable();
 
 });
+
 
 
 
