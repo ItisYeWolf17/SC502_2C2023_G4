@@ -10,13 +10,62 @@ use Model\Usuario;
 class LoginController
 {
 
-    public static function principal(Router $router)
-    {
+    public static function principal(Router $router){
+        $router->render('dashboard/principal');
+    }
+
+    public static function indexIni(Router $router){
         $router->render('dashboard/indexIni');
     }
-    public static function login(Router $router)
-    {
-        $router->render('auth/login');
+    public static function login(Router $router){
+        $alertas = [];
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+            $auth = new Usuario($_POST);
+            $alertas = $auth->validarLogin();
+
+            if(empty($alertas)){
+                //Comprobar que el usuario exista
+                $usuario = Usuario::where('correo', $auth->correo);
+                
+
+                if($usuario){
+                    //Comprobar si la clave es correcta
+                    if($usuario->comprobarPassword($auth->password)){
+                    //Autenticar el usuario 
+                    session_start();
+                    $_SESSION['Roles_id_rol'] = $usuario->Roles_id_rol;
+                    $_SESSION['id_usuario'] = $usuario->id_usuario;
+                    $_SESSION['nombre'] = $usuario->nombre_usuario. " ". $usuario->apellido_usuario;
+                    $_SESSION['correo'] = $usuario->correo;
+                    $_SESSION['login'] = true;
+ 
+                    //Redireccionamiento
+                    if($usuario->Roles_id_rol === "1"){
+                        
+                        header('Location:/principal');
+                    }else{
+                        header('Location:/principal');
+                    }
+    
+                }
+
+                }else {
+                    Usuario::setAlerta('error', 'Usuario no encontrado');
+                }
+
+            }
+
+        }
+        
+        $alertas = Usuario::getAlertas();
+
+
+        $router->render('auth/login', [
+            'auth' => $auth, 
+            'alertas' => $alertas
+        ]);
+
     }
     public static function logout()
     {

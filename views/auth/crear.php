@@ -37,9 +37,9 @@
                     value="<?php echo s($usuario->cedula_usuario); ?>">
             </div>
             <div class="campo">
-                <label class="campo__label" for="roles_id_rol">Rol</label>
-                <input class="campo__field" type="number" name="roles_id_rol" placeholder="rol" id="roles_id_rol"
-                value="<?php echo s($usuario->roles_id_rol); ?>">
+                <label class="campo__label" for="Roles_id_rol">Rol</label>
+                <input class="campo__field" type="number" name="Roles_id_rol" placeholder="rol" id="Roles_id_rol"
+                value="<?php echo s($usuario->Roles_id_rol); ?>">
             </div>
             <div class="campo">
                 <input type="submit" class="btn-enviar">

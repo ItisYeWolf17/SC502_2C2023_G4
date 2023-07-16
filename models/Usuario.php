@@ -6,13 +6,13 @@ class Usuario extends ActiveRecord{
     //Base de datos 
     protected static $tabla = 'usuarios';
     protected static $columnasDB = ['id_usuario', 'nombre_usuario',
-     'apellido_usuario', 'cedula_usuario', 'roles_id_rol', 'password','correo', 'token'];
+     'apellido_usuario', 'cedula_usuario', 'Roles_id_rol', 'password','correo', 'token'];
 
      public $id_usuario;
      public $nombre_usuario;
      public $apellido_usuario;
      public $cedula_usuario;
-     public $roles_id_rol;
+     public $Roles_id_rol;
      public $password;
      public $correo;
      public $token;
@@ -22,12 +22,11 @@ class Usuario extends ActiveRecord{
         $this->nombre_usuario = $args['nombre_usuario'] ?? '';
         $this->apellido_usuario = $args['apellido_usuario'] ?? '';
         $this->cedula_usuario = $args['cedula_usuario'] ?? '';
-        $this->roles_id_rol = $args['roles_id_rol'] ?? 0;
+        $this->Roles_id_rol = $args['Roles_id_rol'] ?? null;
         $this->password = $args['password'] ?? '';
         $this->correo = $args['correo'] ?? '';
         $this->token = $args['token'] ?? null;
      }
-
      public function validarNuevaCuenta(){
       if(!$this -> nombre_usuario){
          self::$alertas['error'][] = 'El nombre del usuario es obligatorio';
@@ -38,7 +37,7 @@ class Usuario extends ActiveRecord{
       if(!$this -> cedula_usuario){
          self::$alertas['error'][] = 'La cedula del usuario es obligatorio';
       }
-      if(!$this -> roles_id_rol){
+      if(!$this -> Roles_id_rol){
          self::$alertas['error'][] = 'El rol del usuario es obligatorio';
       }
       if(!$this -> password){
@@ -56,6 +55,16 @@ class Usuario extends ActiveRecord{
       return self::$alertas;
      }
 
+
+     public function validarLogin(){
+         if(!$this->correo){
+            self::$alertas['error'][] = 'No email';
+         }
+         if(!$this->password){
+            self::$alertas['error'][] = 'No password';
+         }
+         return self::$alertas;
+     }
      //Revisa si el usuario ya existe
      public function existeUsuario(){
       $query = "SELECT * FROM " .self::$tabla. " WHERE correo = '" .$this->correo. "' LIMIT 1"; 
@@ -76,6 +85,14 @@ class Usuario extends ActiveRecord{
       $this-> token = uniqid();
      }
 
+     public function comprobarPassword($password){
+      $resultado = password_verify($password, $this->password);
+      if(!$resultado){
+            self::$alertas['error'][] = 'Password incorrecto';
+      }else{
+         return true;
+      }
+     }
 
 
 

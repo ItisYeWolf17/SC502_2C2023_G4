@@ -18,7 +18,7 @@
         <img src="./assets/img/logo.png">
       </div>
       <nav class="navegacion-principal">
-        <a href="./login.html">Cerrar Sesión</a>
+        <a href="/login">Cerrar Sesión</a>
         <a href="#">Bryan Cantillo</a>
       </nav>
     </div>
