@@ -28,7 +28,6 @@ class LoginController
                 //Comprobar que el usuario exista
                 $usuario = Usuario::where('correo', $auth->correo);
                 
-
                 if($usuario){
                     //Comprobar si la clave es correcta
                     if($usuario->comprobarPassword($auth->password)){

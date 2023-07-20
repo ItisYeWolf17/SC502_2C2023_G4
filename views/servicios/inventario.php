@@ -45,9 +45,9 @@
                 <tr>
                     <th class="centered">Codigo</th>
                     <th class="centered ">Nombre</th>
-                    <th class="centered">Costo</th>
                     <th class="centered">Costo IVA</th>
                     <th class="centered">Stock</th>
+                    <th class="centered acciones">Precio Cliente</th>
                     <th class="centered acciones">Acciones</th>
                 </tr>
             </thead>
