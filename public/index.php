@@ -39,5 +39,8 @@ $router->get("/inventario", [InventarioController::class, 'inventario']);
 //Api de inventario 
 $router->get('/api/inventario', [APIController::class, 'index']);
 
+//Cliente
+$router->get("/clientes", [ClienteController::class,'clientes']);
+
 $router -> comprobarRutas();
 

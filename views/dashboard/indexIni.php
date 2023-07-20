@@ -11,11 +11,14 @@
 </head>
 <body>
     <header class="presentacion">
+        <nav class= "log">
+            <a class="log-btn" href="/login">Iniciar Sesion</a>
+        </nav>
         <div class="texto-presentacion">
             <h1>Taller AK</h1>
             <p>Devolvemos el esplendor y resplandor a tu vehiculo</p>
             <a href="#contacto">Contactenos</a>
-            <a class="place-top" href="/login">Iniciar Sesion</a>
+
         </div>
         <div class="svg-presentacion" style="height: 150px; overflow: hidden;" >
             <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
@@ -80,7 +83,7 @@
             <img src="assets/img/asesoria legal.jpg" alt="">
             <div class="contenedor-texto-diagnostico">
                 <h2 class="titulo izquierda">Asesoría Legal</h2>
-                <p class="parrafo">El Taller AK es capaz de brindarle asesoría legal respecto a accidentes vividos.</p>
+                <p class="parrafo-info">El Taller AK es capaz de brindarle asesoría legal respecto a accidentes vividos.</p>
                 <a href="" class="learn-more">Más información</a>
             </div>
         </div>
