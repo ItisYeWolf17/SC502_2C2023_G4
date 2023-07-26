@@ -42,7 +42,7 @@ session_start();
     </article>
 
     <article class="card-servicio">
-      <a class="link" href="#">
+      <a class="link" href="/clientes">
         <div class="img-servicio">
           <img src="./assets/img/cliente.jpg">
         </div>

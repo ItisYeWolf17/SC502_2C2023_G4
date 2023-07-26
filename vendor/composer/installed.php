@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
         'name' => 'bryancantillo/proyecto',
-        'pretty_version' => 'dev-main',
-        'version' => 'dev-main',
-        'reference' => 'b82df5e10d3ad6845a76f89715706059a3696108',
+        'pretty_version' => '1.0.0+no-version-set',
+        'version' => '1.0.0.0',
+        'reference' => NULL,
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -11,9 +11,9 @@
     ),
     'versions' => array(
         'bryancantillo/proyecto' => array(
-            'pretty_version' => 'dev-main',
-            'version' => 'dev-main',
-            'reference' => 'b82df5e10d3ad6845a76f89715706059a3696108',
+            'pretty_version' => '1.0.0+no-version-set',
+            'version' => '1.0.0.0',
+            'reference' => NULL,
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
