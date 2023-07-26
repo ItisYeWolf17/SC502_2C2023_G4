@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,7 +27,7 @@
             </div>
             <nav class="navegacion-principal">
                 <a href="./login.html">Cerrar Sesión</a>
-                <a href="#">Bryan Cantillo</a>
+                <a href="#"><?php echo $_SESSION['nombre']; ?></a>
 
             </nav>
         </div>
