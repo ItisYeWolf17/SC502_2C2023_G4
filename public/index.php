@@ -5,6 +5,7 @@ require_once __DIR__ . '/../includes/app.php';
 use Controllers\APIController;
 use Controllers\InventarioController;
 use Controllers\LoginController;
+use Controllers\ClienteController;
 use MVC\Router;
 $router = new Router();
 
