@@ -102,6 +102,18 @@ class ActiveRecord {
         return $resultado;
     }
 
+    public function guardarCliente() {
+        $resultado = '';
+        if(!is_null($this->id_propietario)) {
+            // actualizar
+            $resultado = $this->actualizar();
+        } else {
+            // Creando un nuevo registro
+            $resultado = $this->crear();
+        }
+        return $resultado;
+    }
+
     // Todos los registros
     public static function all() {
         $query = "SELECT * FROM " . static::$tabla;

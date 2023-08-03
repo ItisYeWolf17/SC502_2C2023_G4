@@ -7,7 +7,7 @@ btnCreaCodigo.addEventListener("click", function () {
         title: 'Añadir Cliente',
         html: ` 
         <div class="formulario-crear">
-        <form class="formulario" method = "POST" action = /api/agregarCliente enctype="multipart/form-data">
+        <form class="formulario" method = "POST" action = /crear enctype="multipart/form-data">
             <div class="campo">
                 <label class="campo__label" for="nombre_propietario">Nombre del Cliente</label>
                 <input class="campo__field" type="text" name="nombre_propietario" placeholder="Alexander"

@@ -17,20 +17,5 @@ class APIController{
         echo json_encode($clientes);
     }
 
-    public static function agregarCliente(){
-        $conn = include_once "./includes/database.php";
-
-        $nombre = $_POST["nombre_propietario"];
-        $apellido = $_POST["apellido_propietario"];
-        $cedula = $_POST["cedula_propietario"];
-
-        $st = $conn->prepare("INSERT INTO propietarios(nombre_propietario,apellido_propietario,cedula_propietario)
-        VALUES
-        (?,?,?)");
-
-        $st->bind_param("sss", $nombre, $apellido, $cedula);
-        $st->execute();
-        header("Location: clientes.php");
-        exit();
-    }
+    
 }
