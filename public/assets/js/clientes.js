@@ -2,42 +2,67 @@
 
 let btnCreaCodigo = document.querySelector(".abrir-codigo");
 
-btnCreaCodigo.addEventListener("click", function () {
-    swal.fire({
-        title: 'Añadir Cliente',
-        html: ` 
-        <div class="formulario-crear">
-        <form class="formulario" method = "POST" action = /crear enctype="multipart/form-data">
-            <div class="campo">
-                <label class="campo__label" for="nombre_propietario">Nombre del Cliente</label>
-                <input class="campo__field" type="text" name="nombre_propietario" placeholder="Alexander"
-                    id="nombre_propietario">
-            </div>
-            <div class="campo">
-                <label class="campo__label" for="apellido_propietario">Apellido del Cliente</label>
-                <input class="campo__field" type="text" name="apellido_propietario" placeholder="Cantillo Aguilar"
-                    id="apellido_propietario">
-            </div>
-            <div class="campo">
-                <label class="campo__label" for="cedula_propietario">Cedula del Cliente</label>
-                <input class="campo__field" type="text" name="cedula_propietario" placeholder="207530987" id="cedula_propietario">
-            </div>
+    // Agrega un listener al botón para mostrar el SweetAlert cuando se haga clic
+    btnCreaCodigo.addEventListener("click", function () {
+        swal.fire({
+            title: 'Añadir Cliente',
+            html: `
+                <div class="formulario-crear">
+                    <form class="formulario" id="formularioCliente" enctype="multipart/form-data">
+                        <div class="campo">
+                            <label class="campo__label" for="nombre_propietario">Nombre del Cliente</label>
+                            <input class="campo__field" type="text" name="nombre_propietario" placeholder="Alexander"
+                                id="nombre_propietario">
+                        </div>
+                        <div class="campo">
+                            <label class="campo__label" for="apellido_propietario">Apellido del Cliente</label>
+                            <input class="campo__field" type="text" name="apellido_propietario" placeholder="Cantillo Aguilar"
+                                id="apellido_propietario">
+                        </div>
+                        <div class="campo">
+                            <label class="campo__label" for="cedula_propietario">Cedula del Cliente</label>
+                            <input class="campo__field" type="text" name="cedula_propietario" placeholder="207530987" id="cedula_propietario">
+                        </div>
+                    </form>
+                </div>`,
+            showCancelButton: true,
+            confirmButtonColor: '#0B3B59',
+            customClass: {
+                popup: 'ventanaModal-inventario'
+            },
+            preConfirm: () => {
+                // Obtener los datos del formulario
+                const formData = new FormData(document.getElementById("formularioCliente"));
 
-            <div class="campo">
-                <button type="submit">Agregar<button/>
-            </div>
-
-
-          
-        </form>
-    </div>`,
-        showCancelButton: true,
-        confirmButtonColor: '#0B3B59',
-        customClass: {
-            popup: 'ventanaModal-inventario'
-        }
+                return fetch('/crear-cliente', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Hubo un problema al enviar el formulario.');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Aquí procesas la respuesta del servidor (data) como desees
+                    Swal.fire({
+                        icon: "success",
+                        title: "¡Envío Exitoso!",
+                        text: "Se ha creado el cliente exitosamente.",
+                    });
+                })
+                .catch(error => {
+                    // Mostrar SweetAlert de error en caso de fallo
+                    Swal.fire({
+                        icon: "error",
+                        title: "Error",
+                        text: error.message,
+                    });
+                });
+            }
+        });
     });
-})
 
 let dataTable;
 let dataTableIsInitialized = false;

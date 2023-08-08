@@ -17,5 +17,14 @@ class APIController{
         echo json_encode($clientes);
     }
 
+    public static function guardarCliente(){
+        $cliente = new Cliente($_POST);
+
+        $resultado = $cliente -> crear();
+
+        echo json_encode($resultado);
+
+    }
+
     
 }

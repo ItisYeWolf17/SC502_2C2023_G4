@@ -43,7 +43,7 @@ $router->get('/api/inventario', [APIController::class, 'index']);
 //Cliente
 $router->get("/clientes", [ClienteController::class,'clientes']);
 
-$router->post('/crear', [ClienteController::class, 'crear']);
+$router->post('/crear-cliente', [ClienteController::class, 'crear']);
 
 $router->get('/api/clientes', [APIController::class, 'clientes']);
 
