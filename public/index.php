@@ -6,6 +6,7 @@ use Controllers\APIController;
 use Controllers\InventarioController;
 use Controllers\LoginController;
 use Controllers\ClienteController;
+use Controllers\VehiculoController;
 use MVC\Router;
 $router = new Router();
 
@@ -43,9 +44,21 @@ $router->get('/api/inventario', [APIController::class, 'index']);
 //Cliente
 $router->get("/clientes", [ClienteController::class,'clientes']);
 
+$router->get("/addCliente", [ClienteController::class,'addCliente']);
+
+
 $router->post('/crear-cliente', [ClienteController::class, 'crear']);
 
+$router->post('/reporte-clientes', [ClienteController::class, 'generarReporte']);
+
+
 $router->get('/api/clientes', [APIController::class, 'clientes']);
+
+//Vehiculo
+
+$router ->get('/vehiculos', [VehiculoController::class, 'vehiculos']);
+
+$router->get('/api/vehiculos', [APIController::class, 'vehiculos']);
 
 
 

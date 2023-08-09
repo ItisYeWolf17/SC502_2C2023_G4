@@ -23,7 +23,8 @@ session_start();
     <header class="header">
         <div class="contenido-header">
             <div class="imagen-logo">
-                <img src="./assets/img/logo.png">
+                <a href="/principal"><img src="./assets/img/logo.png"></a>
+                
             </div>
             <nav class="navegacion-principal">
                 <a href="./login.html">Cerrar Sesión</a>
