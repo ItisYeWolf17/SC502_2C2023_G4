@@ -39,7 +39,11 @@ session_start();
     
 <div class="container-table">
 
-    <a class="titulo-servicios abrir-codigo" href="#">Añadir Cliente</a>
+    <a class="titulo-servicios abrir-codigo" href="/addCliente">Añadir Cliente</a>
+
+    <form action="/reporte-clientes" method="post">
+        <button class="titulo-servicios abrir-codigo">Generar Reporte</button>
+    </form>
     <table id="datatable_clientes" class="datatable">
         
         <thead>

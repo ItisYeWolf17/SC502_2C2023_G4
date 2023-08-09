@@ -31,7 +31,7 @@ session_start();
   <section class="container-menu">
 
     <article class="card-servicio">
-      <a class="link" href="#">
+      <a class="link" href="/vehiculos">
         <div class="img-servicio">
           <img src="./assets/img/reparacion vehiculo.jpg">
         </div>
@@ -74,27 +74,6 @@ session_start();
       </a>
     </article>
 
-    <article class="card-servicio">
-      <a class="link" href="#">
-        <div class="img-servicio">
-          <img src="./assets/img/correos.png">
-        </div>
-        <div class="info-servicio">
-          <h4>Correo</h4>
-        </div>
-      </a>
-    </article>
-
-    <article class="card-servicio">
-      <a class="link" href="#">
-        <div class="img-servicio">
-          <img src="./assets/img/ajustes.jpg">
-        </div>
-        <div class="info-servicio">
-          <h4>Ajustes</h4> 
-        </div>
-      </a>
-    </article>
 
 
   </section>
