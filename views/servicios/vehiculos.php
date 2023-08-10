@@ -35,12 +35,18 @@ session_start();
     </header>
     <h2 class="titulo-servicios">Estas en el Modulo Vehiculos</h2>
 
+    
 
 
     
 <div class="container-table">
 
     <a class="titulo-servicios abrir-codigo" href="/addCliente">Añadir Vehiculo</a>
+
+    <form action="/reporte-vehiculos" method="post">
+        <button class="titulo-servicios abrir-codigo">Generar Reporte</button>
+    </form>
+
     <table id="datatable_vehiculos" class="datatable">
         
         <thead>

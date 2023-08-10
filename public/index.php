@@ -38,6 +38,9 @@ $router ->get("/principal", [LoginController::class, 'principal']);
 //Restringido 
 $router->get("/inventario", [InventarioController::class, 'inventario']);
 
+$router->post("/reporte-inventario", [InventarioController::class, 'generarReporte']);
+
+
 //Api de inventario 
 $router->get('/api/inventario', [APIController::class, 'index']);
 
@@ -57,6 +60,8 @@ $router->get('/api/clientes', [APIController::class, 'clientes']);
 //Vehiculo
 
 $router ->get('/vehiculos', [VehiculoController::class, 'vehiculos']);
+
+$router -> post('/reporte-vehiculos', [VehiculoController::class, 'generarReporte']);
 
 $router->get('/api/vehiculos', [APIController::class, 'vehiculos']);
 
