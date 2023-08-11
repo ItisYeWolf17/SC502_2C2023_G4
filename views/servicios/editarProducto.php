@@ -52,11 +52,6 @@
             value="<?php echo s($producto -> costo_bruto);?>">
         </div>
 
-        <div class="campo">
-            <label class="campo__label" for="costo_iva">Costo con IVA</label>
-            <input class="campo__field" type="text" name="costo_iva" placeholder="25000" id="costo_iva"
-            value="<?php echo s($producto -> costo_iva);?>">
-        </div>
 
         <div class="campo">
             <label class="campo__label" for="margen_utilidad">Margen de utilidad</label>
@@ -64,11 +59,6 @@
             value="<?php echo s($producto -> margen_utilidad);?>">
         </div>
 
-        <div class="campo">
-            <label class="campo__label" for="margen_utilidad">Precio Cliente</label>
-            <input class="campo__field" type="text" name="precio_cliente" placeholder="27000" id="precio_cliente"
-            value="<?php echo s($producto -> precio_cliente);?>">
-        </div>
 
         <div class="campo">
             <label class="campo__label" for="cantidad">Cantidad</label>

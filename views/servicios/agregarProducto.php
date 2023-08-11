@@ -57,22 +57,11 @@ $producto = new Inventario();
         </div>
 
         <div class="campo">
-            <label class="campo__label" for="costo_iva">Costo con IVA</label>
-            <input class="campo__field" type="text" name="costo_iva" placeholder="25000" id="costo_iva"
-            value="<?php $producto -> costo_iva;?>">
-        </div>
-
-        <div class="campo">
             <label class="campo__label" for="margen_utilidad">Margen de utilidad</label>
             <input class="campo__field" type="text" name="margen_utilidad" placeholder="25" id="margen_utilidad"
             value="<?php $producto -> margen_utilidad;?>">
         </div>
 
-        <div class="campo">
-            <label class="campo__label" for="margen_utilidad">Precio Cliente</label>
-            <input class="campo__field" type="text" name="precio_cliente" placeholder="27000" id="precio_cliente"
-            value="<?php $producto -> precio_cliente;?>">
-        </div>
 
         <div class="campo">
             <label class="campo__label" for="cantidad">Cantidad</label>

@@ -8,7 +8,7 @@ let dataTable;
 let dataTableIsInitialized = false;
 
 const dataTableOptions = {
-    pageLength: 3,
+    pageLength: 10,
     destroy: true,
     language: {
         lengthMenu: "Mostrar _MENU_ registros por página",
@@ -52,18 +52,21 @@ const listProductos = async () => {
                 <td>${productos.costo_iva}</td>
                 <td>${productos.cantidad}</td>
                 <td>${productos.precio_cliente}</td>
-                <td>
-   
-
-                <form action="/api/eliminar" method="POST">
-                    <input type="hidden" name="id" value="${productos.id}">
-                    <input type="submit" class="btn-ver" value="Eliminar">
-                </form>
-
-                <form action="/updateInventory" method="GET">
-                    <input type="hidden" name="id" value="${productos.id}">
-                    <input type="submit" class="btn-ver" value="Editar">
-                </form>
+                <td class="contenedor-formact">
+                    <div class="contenido-opciones">
+                            <div>
+                            <form action="/api/eliminar" method="POST">
+                                <input type="hidden" name="id" value="${productos.id}">
+                                <input type="submit" class="btn-ver" value="Eliminar">
+                            </form>
+                        </div>
+                        <div>
+                            <form action="/updateInventory" method="GET">
+                                <input type="hidden" name="id" value="${productos.id}">
+                                <input type="submit" class="btn-ver" value="Editar">
+                            </form>
+                        </div>
+                    </div>
                  </td>
             </tr>`;
         });

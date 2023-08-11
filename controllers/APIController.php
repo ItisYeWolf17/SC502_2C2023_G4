@@ -45,9 +45,7 @@ class APIController{
     
     public static function guardarProducto(){
         $producto = new Inventario($_POST);
-
         $resultado = $producto -> crear();
-
         echo json_encode($resultado);
 
     }

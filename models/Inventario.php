@@ -24,6 +24,12 @@ class Inventario extends ActiveRecord{
         $this-> margen_utilidad = $args['margen_utilidad'] ?? null;
         $this-> precio_cliente = $args['precio_cliente'] ?? null;
         $this-> cantidad = $args['cantidad'] ?? null;
+    }
 
+    public function setCostos($valor){
+        $this->costo_iva = $this->costo_bruto * ($this->iva_this / 100 + 1);
+        $this->precio_cliente = $this->costo_iva * ($this->margen_utilidad/100+1) ;
+        $this->costo_iva = round($this->costo_iva / 5) * 5;
+        $this->precio_cliente = round($this->precio_cliente / 5) * 5;
     }
 }
