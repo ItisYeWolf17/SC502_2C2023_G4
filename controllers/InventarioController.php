@@ -36,8 +36,6 @@ class InventarioController
 
         $producto = Inventario::find($_GET['id']);
 
-        
-
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $producto->sincronizar($_POST);
             $producto->costo_iva = $producto->costo_bruto * ($producto->iva_producto / 100 + 1);
@@ -45,11 +43,10 @@ class InventarioController
             $producto->costo_iva = round($producto->costo_iva / 5) * 5;
             $producto->precio_cliente = round($producto->precio_cliente / 5) * 5;
             $producto->guardar();
-            var_dump($producto);
             header('Location: /inventario');
         }
         $router->render('/servicios/editarProducto', [
-            'producto' => $producto,
+            'producto' => $producto
   
         ]);
     }

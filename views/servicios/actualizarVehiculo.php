@@ -35,26 +35,32 @@
 
         <form method="POST">
             <div class="campo">
-                <label class="campo__label" for="nombre_propietario">Nombre del Cliente</label>
-                <input class="campo__field" type="text" name="nombre_propietario" placeholder="Alexander"
-                    id="nombre_propietario" value="<?php echo s($cliente->nombre_propietario); ?>">
+                <label class="campo__label" for="placa_vehiculo">Placa del Vehiculo</label>
+                <input class="campo__field" type="text" name="placa_vehiculo" placeholder="SSD-213"
+                    id="placa_vehiculo" value="<?php echo s($vehiculo->placa_vehiculo); ?>">
             </div>
 
             <div class="campo">
-                <label class="campo__label" for="apellido_propietario">Apellido del Cliente</label>
-                <input class="campo__field" type="text" name="apellido_propietario" placeholder="Cantillo Aguilar"
-                    id="apellido_propietario" value="<?php echo s($cliente->apellido_propietario); ?>">
+                <label class="campo__label" for="marca_vehiculo">Marca y Modelo</label>
+                <input class="campo__field" type="text" name="marca_vehiculo" placeholder="Cevrolet Camaro"
+                    id="marca_vehiculo" value="<?php echo s($vehiculo->marca_vehiculo); ?>">
             </div>
 
             <div class="campo">
-                <label class="campo__label" for="cedula_propietario">Cedula del Cliente</label>
-                <input class="campo__field" type="text" name="cedula_propietario" placeholder="207530987"
-                    id="cedula_propietario" value="<?php echo s($cliente->cedula_propietario); ?>">
+                <label class="campo__label" for="year_vehiculo">Año</label>
+                <input class="campo__field" type="text" name="year_vehiculo" placeholder="2024"
+                    id="year_vehiculo" value="<?php echo s($vehiculo->year_vehiculo); ?>">
+            </div>
+
+            <div class="campo">
+                <label class="campo__label" for="idPropietario">Propietario</label>
+                <input class="campo__field" type="text" name="idPropietario" placeholder="1"
+                    id="idPropietario" value="<?php echo s($vehiculo->idPropietario); ?>">
             </div>
 
             <div class="campo">
                 <input type="submit" class="btn-enviar">
-                <a class="cambiar-clave" href="/clientes">Volver</a>
+                <a class="cambiar-clave" href="/vehiculos">Volver</a>
             </div>
         </form>
 

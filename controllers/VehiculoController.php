@@ -19,7 +19,6 @@
             ]);
         }
 
-
         public static function crear(){
             $vehiculo = new Vehiculo($_POST);
     
@@ -32,14 +31,26 @@
             }
         }
 
+        public static function updateVehicle(Router $router)
+    {
+        session_start();
+        if (!is_numeric($_GET['id']))
+            return;
+
+        $vehiculo = Vehiculo::find($_GET['id']);
 
 
-
-
-
-
-
-
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $vehiculo->sincronizar($_POST);
+            $vehiculo->guardar();
+            header('Location: /vehiculos');
+            
+        }
+        $router->render('/servicios/actualizarVehiculo', [
+            'vehiculo' => $vehiculo
+  
+        ]);
+    }
 
 
 

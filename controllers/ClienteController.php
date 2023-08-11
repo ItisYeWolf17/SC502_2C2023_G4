@@ -31,6 +31,24 @@ class ClienteController{
         }
     }
 
+    public static function updateClient(Router $router)
+    {
+        session_start();
+        if (!is_numeric($_GET['id']))
+            return;
+
+        $cliente = Cliente::find($_GET['id']);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $cliente->sincronizar($_POST);
+            $cliente->guardar();
+            header('Location: /clientes');
+        }
+        $router->render('/servicios/actualizarCliente', [
+            'cliente' => $cliente
+        ]);
+    }
+
     public static function generarReporte(){
         $pdf = new Reportes(PDF_PAGE_ORIENTATION, 'mm', 'Letter', true, 'UTF-8', 'false');
 

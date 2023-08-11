@@ -12,9 +12,9 @@ const dataTableOptions = {
     destroy: true,
     language: {
         lengthMenu: "Mostrar _MENU_ registros por página",
-        zeroRecords: "Ningún usuario encontrado",
+        zeroRecords: "Ningún producto encontrado",
         info: "Mostrando de _START_ a _END_ de un total de _TOTAL_ registros",
-        infoEmpty: "Ningún usuario encontrado",
+        infoEmpty: "Ningún producto encontrado",
         infoFiltered: "(filtrados desde _MAX_ registros totales)",
         search: "Buscar:",
         loadingRecords: "Cargando...",
@@ -55,7 +55,7 @@ const listProductos = async () => {
                 <td class="contenedor-formact">
                     <div class="contenido-opciones">
                             <div>
-                            <form action="/api/eliminar" method="POST">
+                            <form action="/api/eliminarProducto" method="POST">
                                 <input type="hidden" name="id" value="${productos.id}">
                                 <input type="submit" class="btn-ver" value="Eliminar">
                             </form>

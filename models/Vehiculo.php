@@ -14,10 +14,10 @@
 
         public function __construct($args = []){
             $this -> id = $args['id'] ?? null;
-            $this -> placa_vehiculo = $args['placa_vehiculo'] ?? null;
-            $this -> marca_vehiculo = $args['marca_vehiculo'] ?? null;
-            $this -> year_vehiculo = $args['year_vehiculo'] ?? null;
-            $this -> idPropietario = $args['idPropietario'] ?? null;
+            $this -> placa_vehiculo = $args['placa_vehiculo'] ?? '';
+            $this -> marca_vehiculo = $args['marca_vehiculo'] ?? '';
+            $this -> year_vehiculo = $args['year_vehiculo'] ?? '';
+            $this -> idPropietario = $args['idPropietario'] ?? '';
         }
 
     }

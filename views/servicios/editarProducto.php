@@ -67,7 +67,11 @@
         </div>
 
         <div class="campo">
-                <input type="submit" class="btn-enviar">
+                <input type="submit" class="btn-enviar" value="Guardar">
+        </div>
+
+        <div class="campo">
+                <a class="cambiar-clave" href="/inventario">Volver</a>
         </div>
     </form>
 

@@ -1,6 +1,5 @@
 <?php
-use Model\Vehiculo;
-$vehiculo = new Vehiculo();
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -35,28 +34,29 @@ $vehiculo = new Vehiculo();
 
     <div class="formulario-crear">
     <form method="POST" action="/crear-vehiculo">
+
         <div class="campo">
             <label class="campo__label" for="placa_vehiculo">Placa del vehiculo</label>
             <input class="campo__field" type="text" name="placa_vehiculo" placeholder="BXD-002"
-            id="placa_vehiculo" value="<?php $vehiculo -> placa_vehiculo;?>">
+            id="placa_vehiculo" value="<?php echo s($vehiculo -> placa_vehiculo);?>">
         </div>
 
         <div class="campo">
             <label class="campo__label" for="marca_vehiculo">Marca del Vehiculo</label>
             <input class="campo__field" type="text" name="marca_vehiculo" placeholder="Toyota"
-            id="marca_vehiculo" value="<?php $vehiculo -> marca_vehiculo;?>">
+            id="marca_vehiculo" value="<?php echo s($vehiculo -> marca_vehiculo);?>">
         </div>
 
         <div class="campo">
             <label class="campo__label" for="year_vehiculo">Año del Vehiculo</label>
             <input class="campo__field" type="text" name="year_vehiculo" placeholder="2013" id="year_vehiculo"
-            value="<?php $vehiculo -> year_vehiculo;?>">
+            value="<?php echo s($vehiculo -> year_vehiculo);?>">
         </div>
 
         <div class="campo">
             <label class="campo__label" for="idPropietario">Dueño del Vehiculo</label>
-            <input class="campo__field" type="number" name="idPropietario" placeholder="2" id="idPropietario"
-            value="<?php $vehiculo -> idPropietario;?>">
+            <input class="campo__field" type="texy" name="idPropietario" placeholder="2" id="idPropietario"
+            value="<?php echo s($vehiculo -> idPropietario);?>">
         </div>
 
         <div class="campo">

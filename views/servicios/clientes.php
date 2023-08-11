@@ -53,7 +53,7 @@ session_start();
                 <th class="centered ">Nombre</th>
                 <th class="centered">Apellido</th>
                 <th class="centered">Cedula</th>
-                <th class="centered"></th>
+                <th class="centered">Acciones</th>
             </tr>
         </thead>
         <tbody id="tableBody_clientes"></tbody>

@@ -34,17 +34,14 @@ $router ->get('/mensaje', [LoginController::class, 'mensaje']);
 //Dashboard 
 $router ->get("/principal", [LoginController::class, 'principal']);
 
-
-//Restringido 
-
 //Inventario
 $router->get("/inventario", [InventarioController::class, 'inventario']);
 $router->get("/addProducto", [InventarioController::class, 'addProducto']);
 $router->post("/crear-producto", [InventarioController::class, 'crear']);
 $router->post("/reporte-inventario", [InventarioController::class, 'generarReporte']);
-$router->get('/api/inventario', [APIController::class, 'inventario']);
-$router->post('/api/eliminar', [APIController::class, 'eliminarProducto']);
 
+$router->get('/api/inventario', [APIController::class, 'inventario']);
+$router->post('/api/eliminarProducto', [APIController::class, 'eliminarProducto']);
 
 $router->get('/updateInventory', [InventarioController::class, 'updateInventory']);
 $router->post('/updateInventory', [InventarioController::class, 'updateInventory']);
@@ -57,12 +54,21 @@ $router->post('/crear-cliente', [ClienteController::class, 'crear']);
 $router->post('/reporte-clientes', [ClienteController::class, 'generarReporte']);
 $router->get('/api/clientes', [APIController::class, 'clientes']);
 
+$router->get('/updateClient', [ClienteController::class, 'updateClient']);
+$router->post('/updateClient', [ClienteController::class, 'updateClient']);
+$router->post('/api/eliminarCliente', [APIController::class, 'eliminarCliente']);
+
+
 //Vehiculo
 $router ->get('/vehiculos', [VehiculoController::class, 'vehiculos']);
 $router->get('/addVehiculo', [VehiculoController::class, 'addVehiculo']);
 $router->post('/crear-vehiculo', [VehiculoController::class, 'crear']);
 $router -> post('/reporte-vehiculos', [VehiculoController::class, 'generarReporte']);
 $router->get('/api/vehiculos', [APIController::class, 'vehiculos']);
+
+$router->get('/updateVehicle', [VehiculoController::class, 'updateVehicle']);
+$router->post('/updateVehicle', [VehiculoController::class, 'updateVehicle']);
+$router->post('/api/eliminar', [APIController::class, 'eliminarVehiculo']);
 
 
 

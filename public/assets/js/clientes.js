@@ -3,7 +3,7 @@ let dataTable;
 let dataTableIsInitialized = false;
 
 const dataTableOptions = {
-    pageLength: 3,
+    pageLength: 10,
     destroy: true,
     language: {
         lengthMenu: "Mostrar _MENU_ registros por página",
@@ -46,9 +46,22 @@ const listclientes = async () => {
                 <td>${clientes.nombre_propietario}</td>
                 <td>${clientes.apellido_propietario}</td>
                 <td>${clientes.cedula_propietario}</td>
-                <td>
-                 <button class="btn-ver btn-editar" data-id=${clientes.id} href = "/update-cliente">Editar</button>
-                 <button class="btn-ver" data-id=${clientes.id}>Eliminar</button></td>
+                <td class="contenedor-formact">
+                    <div class="contenido-opciones">
+                        <div>
+                            <form action="/api/eliminarCliente" method="POST">
+                                <input type="hidden" name="id" value="${clientes.id}">
+                                <input type="submit" class="btn-ver" value="Eliminar">
+                            </form>
+                        </div>
+                        <div>
+                            <form action="/updateClient" method="GET">
+                                <input type="hidden" name="id" value="${clientes.id}">
+                                <input type="submit" class="btn-ver" value="Editar">
+                            </form>
+                        </div>
+                    </div>
+                </td>
             </tr>`;
         });
         tableBody_clientes.innerHTML = content;

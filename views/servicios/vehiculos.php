@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,9 +58,9 @@ session_start();
                 <th class="centered">#</th>
                 <th class="centered ">Placa</th>
                 <th class="centered">Marca</th>
-                <th class="centered">Modelo</th>
+                <th class="centered">Año</th>
                 <th class="centered">Propietario</th>
-                <th class="centered"></th>
+                <th class="centered">Acciones</th>
 
             </tr>
         </thead>

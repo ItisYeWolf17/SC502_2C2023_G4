@@ -63,5 +63,32 @@ class APIController{
         echo json_encode($resultado);
     }
 
+
+    public static function eliminarCliente(){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+            $cliente = Cliente::find($_POST['id']);
+            $cliente->eliminar();
+
+            header('Location:' . $_SERVER['HTTP_REFERER']);
+        }
+        $cliente = new Cliente($_POST);
+        $resultado = $cliente -> eliminar();
+        echo json_encode($resultado);
+    }
+
+    public static function eliminarVehiculo(){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+            $vehiculo = Vehiculo::find($_POST['id']);
+            $vehiculo->eliminar();
+
+            header('Location:' . $_SERVER['HTTP_REFERER']);
+        }
+        $cliente = new Vehiculo($_POST);
+        $resultado = $vehiculo -> eliminar();
+        echo json_encode($resultado);
+    }
+
     
 }
