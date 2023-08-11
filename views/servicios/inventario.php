@@ -41,7 +41,7 @@ session_start();
     
     <div class="container-table">
  
-        <a class="titulo-servicios abrir-codigo" href="#">Abrir un código para articulos</a>
+        <a class="titulo-servicios abrir-codigo" href="addProducto">Abrir un código para articulos</a>
 
         <form action="/reporte-inventario" method="post">
             <button class="titulo-servicios abrir-codigo">Generar Reporte</button>

@@ -64,7 +64,7 @@ class ActiveRecord {
     public function atributos() {
         $atributos = [];
         foreach(static::$columnasDB as $columna) {
-            if($columna === 'id_propietario') continue;
+            if($columna === 'id') continue;
             $atributos[$columna] = $this->$columna;
         }
         return $atributos;
@@ -92,7 +92,7 @@ class ActiveRecord {
     // Registros - CRUD
     public function guardar() {
         $resultado = '';
-        if(!is_null($this->id_propietario)) {
+        if(!is_null($this->id)) {
             // actualizar
             $resultado = $this->actualizar();
         } else {
@@ -100,8 +100,8 @@ class ActiveRecord {
             $resultado = $this->crear();
         }
         return $resultado;
-    }   
-
+        
+    }
 
     // Todos los registros
     public static function all() {
@@ -110,10 +110,10 @@ class ActiveRecord {
         return $resultado;
     }
 
-
     // Busca un registro por su id
-    public static function find($id_propietario) {
-        $query = "SELECT * FROM " . static::$tabla  ." WHERE id = ${id_propietario}";
+    public static function find($id) {
+        $query = "SELECT * FROM " . static::$tabla  ." WHERE id = ${id}";
+
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
     }
@@ -125,16 +125,24 @@ class ActiveRecord {
         return array_shift( $resultado ) ;
     }
 
+    // Busca un registro por su id
     public static function where($columna, $valor) {
-        $query = "SELECT * FROM " . static::$tabla  ." WHERE ${columna} = '{$valor}'";
+        $query = "SELECT * FROM " . static::$tabla  ." WHERE ${columna} = '${valor}'";
         $resultado = self::consultarSQL($query);
         return array_shift( $resultado ) ;
+    }
+
+    // Consulta Plana de SQL (Utilizar cuando los métodos del modelo no son suficientes)
+    public static function SQL($query) {
+        $resultado = self::consultarSQL($query);
+        return $resultado;
     }
 
     // crea un nuevo registro
     public function crear() {
         // Sanitizar los datos
         $atributos = $this->sanitizarAtributos();
+        var_dump($atributos);
 
         // Insertar en la base de datos
         $query = " INSERT INTO " . static::$tabla . " ( ";
@@ -142,7 +150,7 @@ class ActiveRecord {
         $query .= " ) VALUES (' "; 
         $query .= join("', '", array_values($atributos));
         $query .= " ') ";
-
+        
         // Resultado de la consulta
         $resultado = self::$db->query($query);
         return [
@@ -165,7 +173,7 @@ class ActiveRecord {
         // Consulta SQL
         $query = "UPDATE " . static::$tabla ." SET ";
         $query .=  join(', ', $valores );
-        $query .= " WHERE id = '" . self::$db->escape_string($this->id_propietario) . "' ";
+        $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
         $query .= " LIMIT 1 "; 
 
         // Actualizar BD
@@ -175,7 +183,7 @@ class ActiveRecord {
 
     // Eliminar un Registro por su ID
     public function eliminar() {
-        $query = "DELETE FROM "  . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id_propietario) . " LIMIT 1";
+        $query = "DELETE FROM "  . static::$tabla . " WHERE id = " . self::$db->escape_string($this->id) . " LIMIT 1";
         $resultado = self::$db->query($query);
         return $resultado;
     }

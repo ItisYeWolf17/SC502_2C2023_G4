@@ -83,7 +83,7 @@ class ClienteController{
         $clientes = Cliente::all();
 
         foreach($clientes as $cliente){
-            $pdf->Cell(40,6,$cliente->id_propietario,1,0,'C');
+            $pdf->Cell(40,6,$cliente->id,1,0,'C');
             $pdf->Cell(60,6,$cliente->nombre_propietario,1,0,'C');
             $pdf->Cell(35,6,$cliente->apellido_propietario,1,0,'C');
             $pdf->Cell(35,6,$cliente->cedula_propietario,1,1,'C');

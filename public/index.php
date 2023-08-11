@@ -36,33 +36,32 @@ $router ->get("/principal", [LoginController::class, 'principal']);
 
 
 //Restringido 
+
+//Inventario
 $router->get("/inventario", [InventarioController::class, 'inventario']);
-
+$router->get("/addProducto", [InventarioController::class, 'addProducto']);
+$router->post("/crear-producto", [InventarioController::class, 'crear']);
 $router->post("/reporte-inventario", [InventarioController::class, 'generarReporte']);
+$router->get('/api/inventario', [APIController::class, 'inventario']);
+$router->post('/api/eliminar', [APIController::class, 'eliminarProducto']);
 
 
-//Api de inventario 
-$router->get('/api/inventario', [APIController::class, 'index']);
+$router->get('/updateInventory', [InventarioController::class, 'updateInventory']);
+$router->post('/updateInventory', [InventarioController::class, 'updateInventory']);
+
 
 //Cliente
 $router->get("/clientes", [ClienteController::class,'clientes']);
-
 $router->get("/addCliente", [ClienteController::class,'addCliente']);
-
-
 $router->post('/crear-cliente', [ClienteController::class, 'crear']);
-
 $router->post('/reporte-clientes', [ClienteController::class, 'generarReporte']);
-
-
 $router->get('/api/clientes', [APIController::class, 'clientes']);
 
 //Vehiculo
-
 $router ->get('/vehiculos', [VehiculoController::class, 'vehiculos']);
-
+$router->get('/addVehiculo', [VehiculoController::class, 'addVehiculo']);
+$router->post('/crear-vehiculo', [VehiculoController::class, 'crear']);
 $router -> post('/reporte-vehiculos', [VehiculoController::class, 'generarReporte']);
-
 $router->get('/api/vehiculos', [APIController::class, 'vehiculos']);
 
 

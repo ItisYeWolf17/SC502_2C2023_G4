@@ -13,6 +13,36 @@
             $router -> render('servicios/vehiculos', []);
         }
 
+        public static function addVehiculo(Router $router){
+            $router -> render('servicios/agregarVehiculo', [
+    
+            ]);
+        }
+
+
+        public static function crear(){
+            $vehiculo = new Vehiculo($_POST);
+    
+            if($_SERVER['REQUEST_METHOD'] === 'POST'){
+                $vehiculo -> sincronizar($_POST);
+                $resultado = $vehiculo -> guardar();
+                if($resultado){
+                    header('Location: /vehiculos');
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
         public static function generarReporte(){
             $pdf = new Reportes(PDF_PAGE_ORIENTATION, 'mm', 'Letter', true, 'UTF-8', 'false');
     
@@ -66,11 +96,11 @@
             $vehiculos = Vehiculo::all();
     
             foreach($vehiculos as $vehiculo){
-                $pdf->Cell(10,6,$vehiculo->id_vehiculo,1,0,'C');
+                $pdf->Cell(10,6,$vehiculo->id,1,0,'C');
                 $pdf->Cell(60,6,$vehiculo->placa_vehiculo,1,0,'C');
                 $pdf->Cell(35,6,$vehiculo->marca_vehiculo,1,0,'C');
                 $pdf->Cell(35,6,$vehiculo->year_vehiculo,1,0,'C');
-                $pdf->Cell(35,6,$vehiculo->Propietarios_id_propietario,1,1,'C');
+                $pdf->Cell(35,6,$vehiculo->idPropietario,1,1,'C');
             }
     
             $pdf->Output('Reporte-Vehiculos'.date('d_m_y').'.pdf', 'I'); 

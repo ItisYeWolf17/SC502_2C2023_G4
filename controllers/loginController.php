@@ -33,14 +33,14 @@ class LoginController
                     if($usuario->comprobarPassword($auth->password)){
                     //Autenticar el usuario 
                     session_start();
-                    $_SESSION['Roles_id_rol'] = $usuario->Roles_id_rol;
-                    $_SESSION['id_usuario'] = $usuario->id_usuario;
+                    $_SESSION['idRol'] = $usuario->idRol;
+                    $_SESSION['id'] = $usuario->id;
                     $_SESSION['nombre'] = $usuario->nombre_usuario. " ". $usuario->apellido_usuario;
                     $_SESSION['correo'] = $usuario->correo;
                     $_SESSION['login'] = true;
  
                     //Redireccionamiento
-                    if($usuario->Roles_id_rol === "1"){
+                    if($usuario->idRol === "1"){
                         
                         header('Location:/principal');
                     }else{

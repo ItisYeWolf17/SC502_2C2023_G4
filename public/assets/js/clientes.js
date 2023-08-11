@@ -42,13 +42,13 @@ const listclientes = async () => {
         clientes.forEach((clientes) => {
             content += `
             <tr>
-                <td>${clientes.id_propietario}</td>
+                <td>${clientes.id}</td>
                 <td>${clientes.nombre_propietario}</td>
                 <td>${clientes.apellido_propietario}</td>
                 <td>${clientes.cedula_propietario}</td>
                 <td>
-                 <button class="btn-ver btn-editar" data-id=${clientes.id_propietario} href = "/update-cliente">Editar</button>
-                 <button class="btn-ver" data-id=${clientes.id_propietario}>Eliminar</button></td>
+                 <button class="btn-ver btn-editar" data-id=${clientes.id} href = "/update-cliente">Editar</button>
+                 <button class="btn-ver" data-id=${clientes.id}>Eliminar</button></td>
             </tr>`;
         });
         tableBody_clientes.innerHTML = content;

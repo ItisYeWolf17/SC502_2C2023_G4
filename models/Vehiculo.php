@@ -4,20 +4,20 @@
     class Vehiculo extends ActiveRecord{
 
         protected static $tabla = 'Vehiculos';
-        protected static $columnasDB = ['id_vehiculo', 'placa_vehiculo', 'marca_vehiculo', 'year_vehiculo', 'Propietarios_id_propietario'];
+        protected static $columnasDB = ['id', 'placa_vehiculo', 'marca_vehiculo', 'year_vehiculo', 'idPropietario'];
 
-        public $id_vehiculo;
+        public $id;
         public $placa_vehiculo;
         public $marca_vehiculo;
         public $year_vehiculo;
-        public $Propietarios_id_propietario;
+        public $idPropietario;
 
         public function __construct($args = []){
-            $this -> id_vehiculo = $args['id_vehiculo'] ?? null;
+            $this -> id = $args['id'] ?? null;
             $this -> placa_vehiculo = $args['placa_vehiculo'] ?? null;
             $this -> marca_vehiculo = $args['marca_vehiculo'] ?? null;
             $this -> year_vehiculo = $args['year_vehiculo'] ?? null;
-            $this -> Propietarios_id_propietario = $args['Propietarios_id_propietario'] ?? null;
+            $this -> idPropietario = $args['idPropietario'] ?? null;
         }
 
     }

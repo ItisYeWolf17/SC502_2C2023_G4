@@ -33,7 +33,7 @@ $cliente = new Cliente();
                 </a>
             </div>
             <nav class="navegacion-principal">
-                <a href="./login.html">Cerrar Sesión</a>
+                <a href="/login">Cerrar Sesión</a>
                 <a href="#"><?php echo $_SESSION['nombre']; ?></a>
             </nav>
         </div>

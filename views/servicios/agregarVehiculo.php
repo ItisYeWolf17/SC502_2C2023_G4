@@ -1,11 +1,6 @@
 <?php
-session_start();
-
-use Model\Cliente;
-
-$cliente = new Cliente();
-
-
+use Model\Vehiculo;
+$vehiculo = new Vehiculo();
 ?>
 
 <!DOCTYPE html>
@@ -13,9 +8,9 @@ $cliente = new Cliente();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgregarCliente</title>
+    <title>Agregar vehiculos</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <link rel="stylesheet" href="./assets/css/clientes.css" />
+    <link rel="stylesheet" href="./assets/css/vehiculos.css" />
     <link rel="stylesheet" href="./assets/css/table.css"/>
     
     <script src="https://kit.fontawesome.com/3e4411f84c.js" crossorigin="anonymous"></script>
@@ -39,23 +34,29 @@ $cliente = new Cliente();
     </header>
 
     <div class="formulario-crear">
-    <form method="POST" action="/crear-cliente">
+    <form method="POST" action="/crear-vehiculo">
         <div class="campo">
-            <label class="campo__label" for="nombre_propietario">Nombre del Cliente</label>
-            <input class="campo__field" type="text" name="nombre_propietario" placeholder="Alexander"
-            id="nombre_propietario" value="<?php $cliente -> nombre_propietario;?>">
+            <label class="campo__label" for="placa_vehiculo">Placa del vehiculo</label>
+            <input class="campo__field" type="text" name="placa_vehiculo" placeholder="BXD-002"
+            id="placa_vehiculo" value="<?php $vehiculo -> placa_vehiculo;?>">
         </div>
 
         <div class="campo">
-            <label class="campo__label" for="apellido_propietario">Apellido del Cliente</label>
-            <input class="campo__field" type="text" name="apellido_propietario" placeholder="Cantillo Aguilar"
-            id="apellido_propietario" value="<?php $cliente -> apellido_propietario;?>">
+            <label class="campo__label" for="marca_vehiculo">Marca del Vehiculo</label>
+            <input class="campo__field" type="text" name="marca_vehiculo" placeholder="Toyota"
+            id="marca_vehiculo" value="<?php $vehiculo -> marca_vehiculo;?>">
         </div>
 
         <div class="campo">
-            <label class="campo__label" for="cedula_propietario">Cedula del Cliente</label>
-            <input class="campo__field" type="text" name="cedula_propietario" placeholder="207530987" id="cedula_propietario"
-            value="<?php $cliente -> cedula_propietario;?>">
+            <label class="campo__label" for="year_vehiculo">Año del Vehiculo</label>
+            <input class="campo__field" type="text" name="year_vehiculo" placeholder="2013" id="year_vehiculo"
+            value="<?php $vehiculo -> year_vehiculo;?>">
+        </div>
+
+        <div class="campo">
+            <label class="campo__label" for="idPropietario">Dueño del Vehiculo</label>
+            <input class="campo__field" type="number" name="idPropietario" placeholder="2" id="idPropietario"
+            value="<?php $vehiculo -> idPropietario;?>">
         </div>
 
         <div class="campo">

@@ -45,14 +45,14 @@ const listVehiculos = async () => {
         vehiculos.forEach((vehiculos) => {
             content += `
             <tr>
-                <td>${vehiculos.id_vehiculo}</td>
+                <td>${vehiculos.id}</td>
                 <td>${vehiculos.placa_vehiculo}</td>
                 <td>${vehiculos.marca_vehiculo}</td>
                 <td>${vehiculos.year_vehiculo}</td>
-                <td>${vehiculos.Propietarios_id_propietario}</td>
+                <td>${vehiculos.idPropietario}</td>
                 <td>
-                 <button class="btn-ver btn-editar" data-id=${vehiculos.id_vehiculo}>Editar</button>
-                 <button class="btn-ver" data-id=${vehiculos.id_vehiculo}>Eliminar</button></td>
+                 <button class="btn-ver btn-editar" data-id=${vehiculos.id}>Editar</button>
+                 <button class="btn-ver" data-id=${vehiculos.id}>Eliminar</button></td>
             </tr>`;
         });
         tableBody_vehiculos.innerHTML = content;

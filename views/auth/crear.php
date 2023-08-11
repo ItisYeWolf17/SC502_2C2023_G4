@@ -1,3 +1,12 @@
+
+<?php 
+use Model\Usuario;
+
+$usuario = new Usuario;
+?>
+
+
+
 <body>
 
     <header class="header">
@@ -37,9 +46,9 @@
                     value="<?php echo s($usuario->cedula_usuario); ?>">
             </div>
             <div class="campo">
-                <label class="campo__label" for="Roles_id_rol">Rol</label>
-                <input class="campo__field" type="number" name="Roles_id_rol" placeholder="rol" id="Roles_id_rol"
-                value="<?php echo s($usuario->Roles_id_rol); ?>">
+                <label class="campo__label" for="idRol">Rol</label>
+                <input class="campo__field" type="number" name="idRol" placeholder="rol" id="idRol"
+                value="<?php echo s($usuario->idRol); ?>">
             </div>
             <div class="campo">
                 <input type="submit" class="btn-enviar">

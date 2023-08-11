@@ -6,7 +6,7 @@ use Model\Cliente;
 use Model\Vehiculo;
 
 class APIController{
-    public static function index(){
+    public static function inventario(){
         $inventario = Inventario::all();
 
         echo json_encode($inventario);
@@ -31,6 +31,38 @@ class APIController{
 
         echo json_encode($resultado);
 
+    }
+
+    public static function guardarVehiculo(){
+        $vehiculo = new Vehiculo($_POST);
+
+        $resultado = $vehiculo -> crear();
+
+        echo json_encode($resultado);
+
+    }
+
+    
+    public static function guardarProducto(){
+        $producto = new Inventario($_POST);
+
+        $resultado = $producto -> crear();
+
+        echo json_encode($resultado);
+
+    }
+
+    public static function eliminarProducto(){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+            $producto = Inventario::find($_POST['id']);
+            $producto->eliminar();
+
+            header('Location:' . $_SERVER['HTTP_REFERER']);
+        }
+        $producto = new Inventario($_POST);
+        $resultado = $producto -> eliminar();
+        echo json_encode($resultado);
     }
 
     

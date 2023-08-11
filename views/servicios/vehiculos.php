@@ -15,7 +15,9 @@ session_start();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <!-- DataTable -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" />
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css">
+
+
+
 </head>
 
 <body>
@@ -41,7 +43,7 @@ session_start();
     
 <div class="container-table">
 
-    <a class="titulo-servicios abrir-codigo" href="/addCliente">Añadir Vehiculo</a>
+    <a class="titulo-servicios abrir-codigo" href="/addVehiculo">Añadir Vehiculo</a>
 
     <form action="/reporte-vehiculos" method="post">
         <button class="titulo-servicios abrir-codigo">Generar Reporte</button>
