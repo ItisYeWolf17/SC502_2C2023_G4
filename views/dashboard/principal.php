@@ -11,7 +11,6 @@ session_start();
   <title>Taller AK</title>
   <link rel="stylesheet" href="./assets/css/style.css" />
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
 </head>
 
 <body>
@@ -80,8 +79,12 @@ session_start();
 
   </section>
 
-  <div>
-    <canvas id="myChart" width="100" height="100"></canvas>
+  <section class="section-graficos">
+    <h2 class="titulo-servicios">Graficos</h2>
+
+    <div class="grafico-producto" >
+
+    <canvas id="myChart"></canvas>
 
     <script>
 
@@ -90,10 +93,8 @@ session_start();
         type: 'bar',
         data: {
           datasets: [{
-
             label: 'Stock de productos',
-            backgroundColor: ['#6bf1ab', '#63d69f', '#438c6c'],
-            borderWidth: 1
+            backgroundColor: ['#6bf1ab', '#63d69f', '#438c6c']
           }]
         },
         options: {
@@ -114,6 +115,7 @@ session_start();
         productos.forEach(element => {
           myChart.data['labels'].push(element.nombre_producto)
           myChart.data['datasets'][0].data.push(element.cantidad)
+          myChart.update();
 
         });
         console.log(myChart.data)
@@ -124,7 +126,9 @@ session_start();
   </div>
 
 
+  </section>
 
+  
 
 
   <footer class="footer">
