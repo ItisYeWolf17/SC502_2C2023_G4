@@ -7,6 +7,7 @@ use Controllers\InventarioController;
 use Controllers\LoginController;
 use Controllers\ClienteController;
 use Controllers\VehiculoController;
+use Model\Usuario;
 use MVC\Router;
 $router = new Router();
 
@@ -22,6 +23,12 @@ $router ->get('/logout', [LoginController::class, 'logout' ]);
 $router ->get('/olvide', [LoginController::class, 'olvide' ]);
 $router ->post('/olvide', [LoginController::class, 'olvide' ]);
 
+$router->get("/usuarios", [LoginController::class,'usuarios']);
+$router->get('/api/usuarios', [APIController::class, 'usuarios']);
+$router->post('/api/eliminarUsuario', [APIController::class, 'eliminarUsuario']);
+
+$router->get('/updateUser', [LoginController::class, 'updateUser']);
+$router->post('/updateUser', [LoginController::class, 'updateUser']);
 
 //Crear Cuenta
 $router ->get('/crear', [LoginController::class, 'crear' ]);

@@ -9,7 +9,9 @@ session_start();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Taller AK</title>
-  <link rel="stylesheet" href="./assets/css/style.css"/>
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </head>
 
 <body>
@@ -21,7 +23,9 @@ session_start();
       </div>
       <nav class="navegacion-principal">
         <a href="/login">Cerrar Sesión</a>
-        <a href="/informacionUsuario"><?php echo $_SESSION['nombre']; ?></a>
+        <a href="/informacionUsuario">
+          <?php echo $_SESSION['nombre']; ?>
+        </a>
       </nav>
     </div>
   </header>
@@ -64,7 +68,7 @@ session_start();
     </article>
 
     <article class="card-servicio">
-      <a class="link" href="#">
+      <a class="link" href="/usuarios">
         <div class="img-servicio">
           <img src="./assets/img/user.png">
         </div>
@@ -74,14 +78,59 @@ session_start();
       </a>
     </article>
 
-
-
   </section>
+
+  <div>
+    <canvas id="myChart" width="100" height="100"></canvas>
+
+    <script>
+
+      const ctx = document.getElementById('myChart');
+      let myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          datasets: [{
+
+            label: 'Stock de productos',
+            backgroundColor: ['#6bf1ab', '#63d69f', '#438c6c'],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+      let url = 'http://localhost:3000/api/inventario';
+      fetch(url)
+        .then(response => response.json())
+        .then(datos => mostrar(datos))
+        .catch(error => console.log(error))
+
+      const mostrar = (productos) => {
+        productos.forEach(element => {
+          myChart.data['labels'].push(element.nombre_producto)
+          myChart.data['datasets'][0].data.push(element.cantidad)
+
+        });
+        console.log(myChart.data)
+
+      }
+
+    </script>
+  </div>
+
+
+
+
 
   <footer class="footer">
 
     <div class="contenido-footer">
-      
+
       <div class="imagen-logo">
         <img src="./assets/img/logoActualAK2.png.png">
       </div>
@@ -101,6 +150,7 @@ session_start();
 
   <script src="./assets/js/principal.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>

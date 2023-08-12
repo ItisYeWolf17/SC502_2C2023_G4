@@ -3,6 +3,7 @@
 namespace Controllers;
 use Model\Inventario;
 use Model\Cliente;
+use Model\Usuario;
 use Model\Vehiculo;
 
 class APIController{
@@ -22,6 +23,11 @@ class APIController{
         $vehiculos = Vehiculo::all();
 
         echo json_encode($vehiculos);
+    }
+
+    public static function usuarios(){
+        $usuarios = Usuario::all();
+        echo json_encode($usuarios);
     }
 
     public static function guardarCliente(){
@@ -85,8 +91,19 @@ class APIController{
 
             header('Location:' . $_SERVER['HTTP_REFERER']);
         }
-        $cliente = new Vehiculo($_POST);
         $resultado = $vehiculo -> eliminar();
+        echo json_encode($resultado);
+    }
+
+    public static function eliminarUsuario(){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+            $usuario = Usuario::find($_POST['id']);
+            $usuario->eliminar();
+
+            header('Location:' . $_SERVER['HTTP_REFERER']);
+        }
+        $resultado = $usuario -> eliminar();
         echo json_encode($resultado);
     }
 

@@ -53,7 +53,6 @@ $usuario = new Usuario;
             <div class="campo">
                 <input type="submit" class="btn-enviar">
             </div>
-            <a class="cambiar-clave" href="/login">Volver Atras</a>
 
         </form>
     </div>
