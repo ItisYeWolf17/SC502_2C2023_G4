@@ -32,10 +32,29 @@
 
     <div class="formulario-crear">
     <form method="POST">
+        
         <div class="campo">
-            <label class="campo__label" for="nombre_sistema">Nombre del Sistema</label>
-            <input class="campo__field" type="text" name="nombre_sistema" placeholder="Direccion"
-            id="nombre_sistema" value="<?php $sistema -> nombre_sistema;?>">
+            <label class="campo__label" for="nombre_falla">Nombre de la falla</label>
+            <input class="campo__field" type="text" name="nombre_falla" placeholder="Direccion"
+            id="nombre_falla" value="<?php $falla -> nombre_falla;?>">
+        </div>
+
+        <div class="campo">
+            <label class="campo__label" for="precio_reparacion">Precio reparacion</label>
+            <input class="campo__field" type="text" name="precio_reparacion" placeholder="Direccion"
+            id="precio_reparacion" value="<?php $falla -> precio_reparacion;?>">
+        </div>
+
+        <div class="campo">
+            <label class="campo__label" for="iva">Cuota de IVA</label>
+            <input class="campo__field" type="text" name="iva" placeholder="Direccion"
+            id="iva" value="<?php $falla -> iva;?>">
+        </div>
+
+        <div class="campo">
+            <label class="campo__label" for="idSistemas">Id del sistema</label>
+            <input class="campo__field" type="text" name="idSistemas" placeholder="Direccion"
+            id="idSistemas" value="<?php $falla -> idSistemas;?>">
         </div>
 
         <div class="campo">

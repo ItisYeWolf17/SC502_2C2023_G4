@@ -3,6 +3,7 @@
 require_once __DIR__ . '/../includes/app.php';
 
 use Controllers\APIController;
+use Controllers\FallasController;
 use Controllers\InventarioController;
 use Controllers\LoginController;
 use Controllers\ClienteController;
@@ -10,6 +11,7 @@ use Controllers\VehiculoController;
 use Model\Usuario;
 use MVC\Router;
 use Controllers\SistemasController;
+
 $router = new Router();
 
 
@@ -76,7 +78,7 @@ $router->get('/api/vehiculos', [APIController::class, 'vehiculos']);
 
 $router->get('/updateVehicle', [VehiculoController::class, 'updateVehicle']);
 $router->post('/updateVehicle', [VehiculoController::class, 'updateVehicle']);
-$router->post('/api/eliminar', [APIController::class, 'eliminarVehiculo']);
+$router->post('/api/eliminarVehiculo', [APIController::class, 'eliminarVehiculo']);
 
 //Sistema
 $router->get('/api/sistemas', [APIController::class, 'sistemas']);
@@ -85,7 +87,16 @@ $router->get('/addSistema', [SistemasController::class, 'addSistema']);
 $router->post('/crear-sistema', [SistemasController::class, 'crear']);
 $router->get('/updateSistema', [SistemasController::class, 'updateSistema']);
 $router->post('/updateSistema', [SistemasController::class, 'updateSistema']);
+$router->post('/api/eliminarSistema', [APIController::class, 'eliminarSistema']);
 
+//Fallas
+$router->get('/api/fallas', [APIController::class, 'fallas']);
+$router ->get('/fallas', [FallasController::class, 'fallas']);
+$router->get('/addFalla', [FallasController::class, 'addFalla']);
+$router->post('/crear-falla', [FallasController::class, 'crear']);
+$router->get('/updateFalla', [FallasController::class, 'updateFalla']);
+$router->post('/updateSistema', [FallasController::class, 'updateFalla']);
+$router->post('/api/eliminarFalla', [APIController::class, 'eliminarFalla']);
 
 $router -> comprobarRutas();
 

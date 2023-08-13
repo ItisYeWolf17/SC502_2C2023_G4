@@ -53,7 +53,7 @@ const listVehiculos = async () => {
                 <td class="contenedor-formact">
                 <div class="contenido-opciones">
                         <div>
-                        <form action="/api/eliminar" method="POST">
+                        <form action="/api/eliminarVehiculo" method="POST">
                             <input type="hidden" name="id" value="${vehiculos.id}">
                             <input type="submit" class="btn-ver" value="Eliminar">
                         </form>
