@@ -95,7 +95,7 @@ $router ->get('/fallas', [FallasController::class, 'fallas']);
 $router->get('/addFalla', [FallasController::class, 'addFalla']);
 $router->post('/crear-falla', [FallasController::class, 'crear']);
 $router->get('/updateFalla', [FallasController::class, 'updateFalla']);
-$router->post('/updateSistema', [FallasController::class, 'updateFalla']);
+$router->post('/updateFalla', [FallasController::class, 'updateFalla']);
 $router->post('/api/eliminarFalla', [APIController::class, 'eliminarFalla']);
 
 $router -> comprobarRutas();

@@ -39,13 +39,16 @@ class SistemasController{
 
         $sistema = Sistema::find($_GET['id']);
 
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $sistema->sincronizar($_POST);
             $sistema->guardar();
             header('Location: /sistemas');
+            
         }
         $router->render('/servicios/actualizarSistema', [
             'sistema' => $sistema
+  
         ]);
     }
 

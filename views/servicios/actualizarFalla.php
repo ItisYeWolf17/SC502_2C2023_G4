@@ -36,25 +36,25 @@
         <div class="campo">
             <label class="campo__label" for="nombre_falla">Nombre de la falla</label>
             <input class="campo__field" type="text" name="nombre_falla" placeholder="Direccion"
-            id="nombre_falla" value="<?php $falla -> nombre_falla;?>">
+            id="nombre_falla" value="<?php echo s($falla -> nombre_falla);?>">
         </div>
 
         <div class="campo">
             <label class="campo__label" for="precio_reparacion">Precio reparacion</label>
             <input class="campo__field" type="text" name="precio_reparacion" placeholder="Direccion"
-            id="precio_reparacion" value="<?php $falla -> precio_reparacion;?>">
+            id="precio_reparacion" value="<?php echo s($falla -> precio_reparacion);?>">
         </div>
 
         <div class="campo">
             <label class="campo__label" for="iva">Cuota de IVA</label>
             <input class="campo__field" type="text" name="iva" placeholder="Direccion"
-            id="iva" value="<?php $falla -> iva;?>">
+            id="iva" value="<?php echo s($falla -> iva);?>">
         </div>
 
         <div class="campo">
             <label class="campo__label" for="idSistemas">Id del sistema</label>
             <input class="campo__field" type="text" name="idSistemas" placeholder="Direccion"
-            id="idSistemas" value="<?php $falla -> idSistemas;?>">
+            id="idSistemas" value="<?php echo s($falla -> idSistemas);?>">
         </div>
 
         <div class="campo">

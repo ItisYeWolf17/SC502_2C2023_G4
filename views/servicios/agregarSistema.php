@@ -1,11 +1,5 @@
 <?php
 session_start();
-
-use Model\Cliente;
-
-$cliente = new Cliente();
-
-
 ?>
 
 <!DOCTYPE html>

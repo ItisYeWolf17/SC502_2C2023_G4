@@ -41,10 +41,10 @@ class FallasController
             $falla->precio_reparacion_iva = $falla->precio_reparacion * ($falla->iva / 100 + 1);
             $falla->precio_reparacion_iva = round($falla->precio_reparacion_iva /5)*5;
             $falla->guardar();
-            header('Location: /inventario');
+            header('Location: /fallas');
         }
         $router->render('/servicios/actualizarFalla', [
-            'fallas' => $falla
+            'falla' => $falla
   
         ]);
     }

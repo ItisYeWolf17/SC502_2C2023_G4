@@ -35,7 +35,7 @@
         <div class="campo">
             <label class="campo__label" for="nombre_sistema">Nombre del Sistema</label>
             <input class="campo__field" type="text" name="nombre_sistema" placeholder="Direccion"
-            id="nombre_sistema" value="<?php $sistema -> nombre_sistema;?>">
+            id="nombre_sistema" value="<?php echo s($sistema -> nombre_sistema);?>">
         </div>
 
         <div class="campo">
