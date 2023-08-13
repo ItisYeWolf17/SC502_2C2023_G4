@@ -82,6 +82,3 @@ window.addEventListener("load", async () => {
 
 });
 
-
-
-

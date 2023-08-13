@@ -20,9 +20,12 @@ class APIController{
     }
 
     public static function vehiculos(){
-        $vehiculos = Vehiculo::all();
+        
+        $consulta = "SELECT A.id, A.placa_vehiculo, A.marca_vehiculo, A.year_vehiculo, A.idPropietario, CONCAT(B.nombre_propietario, ' ', B.apellido_propietario) AS 'propietario' FROM vehiculos A INNER JOIN propietarios b  WHERE a.idPropietario = b.id;";
+        $vehiculos = Vehiculo::SQL($consulta);
 
         echo json_encode($vehiculos);
+
     }
 
     public static function usuarios(){

@@ -49,7 +49,7 @@ const listVehiculos = async () => {
                 <td>${vehiculos.placa_vehiculo}</td>
                 <td>${vehiculos.marca_vehiculo}</td>
                 <td>${vehiculos.year_vehiculo}</td>
-                <td>${vehiculos.idPropietario}</td>
+                <td>${vehiculos.propietario}</td>
                 <td class="contenedor-formact">
                 <div class="contenido-opciones">
                         <div>

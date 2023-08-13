@@ -39,7 +39,7 @@ session_start();
           <img src="./assets/img/reparacion vehiculo.jpg">
         </div>
         <div class="info-servicio">
-          <h4>Reparación de Vehículos</h4>
+          <h4>Registo de Vehículos</h4>
         </div>
       </a>
     </article>
@@ -73,6 +73,28 @@ session_start();
         </div>
         <div class="info-servicio">
           <h4>Usuario</h4>
+        </div>
+      </a>
+    </article>
+
+    <article class="card-servicio">
+      <a class="link" href="/sistemas">
+        <div class="img-servicio">
+          <img src="./assets/img/motor-coche-moderno_40345-420.avif">
+        </div>
+        <div class="info-servicio">
+          <h4>Sistemas</h4>
+        </div>
+      </a>
+    </article>
+
+    <article class="card-servicio">
+      <a class="link" href="/fallas">
+        <div class="img-servicio">
+          <img src="./assets/img/119-1190741_black-red-warning-svg-clip-arts-warning-icon.png">
+        </div>
+        <div class="info-servicio">
+          <h4>Fallas</h4>
         </div>
       </a>
     </article>
@@ -118,10 +140,7 @@ session_start();
           }
 
         </script>
-
       </canvas>
-
-
     </div>
 
 
@@ -160,7 +179,6 @@ session_start();
               myChart2.data['datasets'][0].data.push(element.frecuencia)
               myChart2.update();
             });
-            console.log(myChart2.data)
           }
 
         </script>

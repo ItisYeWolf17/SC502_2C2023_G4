@@ -9,8 +9,16 @@
 
     
     class VehiculoController{
+
+
         public static function vehiculos(Router $router){
-            $router -> render('servicios/vehiculos', []);
+            session_start();
+
+            $consulta = "SELECT A.id, A.placa_vehiculo, A.marca_vehiculo, A.year_vehiculo, a.idPropietario, CONCAT(B.nombre_propietario, ' ', B.apellido_propietario) AS 'propietario' FROM vehiculos A INNER JOIN propietarios b  WHERE a.id = b.id;";
+            $vehiculos = Vehiculo::SQL($consulta);
+            $router -> render('servicios/vehiculos', [
+                'propietarios' => $vehiculos
+            ]);
         }
 
         public static function addVehiculo(Router $router){
