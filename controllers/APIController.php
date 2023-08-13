@@ -3,14 +3,21 @@
 namespace Controllers;
 use Model\Inventario;
 use Model\Cliente;
+use Model\Sistema;
 use Model\Usuario;
 use Model\Vehiculo;
+
 
 class APIController{
     public static function inventario(){
         $inventario = Inventario::all();
 
         echo json_encode($inventario);
+    }
+
+    public static function sistemas(){
+        $sistemas = Sistema::all();
+        echo json_encode($sistemas);
     }
 
     public static function clientes(){

@@ -9,6 +9,7 @@ use Controllers\ClienteController;
 use Controllers\VehiculoController;
 use Model\Usuario;
 use MVC\Router;
+use Controllers\SistemasController;
 $router = new Router();
 
 
@@ -77,7 +78,13 @@ $router->get('/updateVehicle', [VehiculoController::class, 'updateVehicle']);
 $router->post('/updateVehicle', [VehiculoController::class, 'updateVehicle']);
 $router->post('/api/eliminar', [APIController::class, 'eliminarVehiculo']);
 
-
+//Sistema
+$router->get('/api/sistemas', [APIController::class, 'sistemas']);
+$router ->get('/sistemas', [SistemasController::class, 'sistemas']);
+$router->get('/addSistema', [SistemasController::class, 'addSistema']);
+$router->post('/crear-sistema', [SistemasController::class, 'crear']);
+$router->get('/updateSistema', [SistemasController::class, 'updateSistema']);
+$router->post('/updateSistema', [SistemasController::class, 'updateSistema']);
 
 
 $router -> comprobarRutas();

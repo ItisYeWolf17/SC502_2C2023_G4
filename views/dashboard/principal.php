@@ -99,6 +99,16 @@ session_start();
       </a>
     </article>
 
+    <article class="card-servicio">
+      <a class="link" href="/facturar">
+        <div class="img-servicio">
+          <img src="./assets/img/recibo-factura-papel-plano-dibujos-animados-o-factura-pagar-aislado_101884-255.avif">
+        </div>
+        <div class="info-servicio">
+          <h4>Facturar</h4>
+        </div>
+      </a>
+    </article>
   </section>
   <h2 class="titulo-servicios">Graficos</h2>
   <section class="section-graficos">
