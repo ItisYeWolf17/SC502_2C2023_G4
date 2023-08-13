@@ -6,13 +6,14 @@ class Cliente extends ActiveRecord{
 
     //Conexion a BD
     protected static $tabla = 'propietarios';
-    protected static $columnasDB = ['id', 'nombre_propietario', 'apellido_propietario', 'cedula_propietario'];
+    protected static $columnasDB = ['id', 'nombre_propietario', 'apellido_propietario', 'cedula_propietario', 'frecuencia'];
     
     //Variables para Columnas
     public $id;
     public $nombre_propietario;
     public $apellido_propietario;
     public $cedula_propietario;
+    public $frecuencia;
 
     //Funcion tipo constructor
 
@@ -22,6 +23,7 @@ class Cliente extends ActiveRecord{
         $this -> nombre_propietario = $args['nombre_propietario'] ?? '';
         $this -> apellido_propietario = $args['apellido_propietario'] ?? '';
         $this -> cedula_propietario = $args['cedula_propietario'] ?? '';
+        $this -> frecuencia = $args['frecuencia'] ?? '';
 
     }
 

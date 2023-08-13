@@ -78,57 +78,101 @@ session_start();
     </article>
 
   </section>
-
+  <h2 class="titulo-servicios">Graficos</h2>
   <section class="section-graficos">
-    <h2 class="titulo-servicios">Graficos</h2>
 
-    <div class="grafico-producto" >
+    <div class="grafico-producto">
+      <h2 class="titulo-servicios">Stock Productos</h2>
 
-    <canvas id="myChart"></canvas>
-
-    <script>
-
-      const ctx = document.getElementById('myChart');
-      let myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-          datasets: [{
-            label: 'Stock de productos',
-            backgroundColor: ['#6bf1ab', '#63d69f', '#438c6c']
-          }]
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
+      <canvas id="myChart">
+        <script>
+          const ctx = document.getElementById('myChart');
+          let myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+              datasets: [{
+                label: 'Stock de productos',
+                backgroundColor: ['#6bf1ab', '#63d69f', '#438c6c']
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
             }
+          });
+          let urlProductos = 'http://localhost:3000/api/inventario';
+          fetch(urlProductos)
+            .then(response => response.json())
+            .then(datos => mostrar(datos))
+            .catch(error => console.log(error))
+
+          const mostrar = (productos) => {
+            productos.forEach(element => {
+              myChart.data['labels'].push(element.nombre_producto)
+              myChart.data['datasets'][0].data.push(element.cantidad)
+              myChart.update();
+            });
           }
-        }
-      });
-      let url = 'http://localhost:3000/api/inventario';
-      fetch(url)
-        .then(response => response.json())
-        .then(datos => mostrar(datos))
-        .catch(error => console.log(error))
 
-      const mostrar = (productos) => {
-        productos.forEach(element => {
-          myChart.data['labels'].push(element.nombre_producto)
-          myChart.data['datasets'][0].data.push(element.cantidad)
-          myChart.update();
+        </script>
 
-        });
-        console.log(myChart.data)
+      </canvas>
 
-      }
 
-    </script>
-  </div>
+    </div>
 
+
+
+    <div class="grafico-producto">
+      <h2 class="titulo-servicios">Clientes Frecuentes</h2>
+
+      <canvas id="myChart2">
+        <script>
+          const ctx2 = document.getElementById('myChart2');
+          let myChart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+              datasets: [{
+                label: 'Clientes frecuentes',
+                backgroundColor: ['#6bf1ab', '#63d69f', '#438c6c']
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+          let urlClientes = 'http://localhost:3000/api/clientes';
+          fetch(urlClientes)
+            .then(response => response.json())
+            .then(datos => mostrarClientes(datos))
+            .catch(error => console.log(error))
+
+          const mostrarClientes = (clientes) => {
+            clientes.forEach(element => {
+              myChart2.data['labels'].push(element.nombre_propietario)
+              myChart2.data['datasets'][0].data.push(element.frecuencia)
+              myChart2.update();
+            });
+            console.log(myChart2.data)
+          }
+
+        </script>
+
+      </canvas>
+
+
+    </div>
 
   </section>
 
-  
+
 
 
   <footer class="footer">
