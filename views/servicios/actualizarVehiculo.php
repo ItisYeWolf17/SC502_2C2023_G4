@@ -56,7 +56,8 @@
             <div class="campo">
                 <label class="campo__label" for="idPropietario">Propietario</label>
                 <select class="campo__field" name="idPropietario" id="idPropietario">
-                    <?php foreach ($propietarios as $propietario): ?>
+                    <?php
+                    foreach ($propietarios as $propietario): ?>
                         <option value="<?php echo $propietario->id; ?>" <?php echo $propietario->id == $selectedPropietarioId ? 'selected' : ''; ?>>
                             <?php echo $propietario->nombre_propietario . ' ' . $propietario->apellido_propietario; ?>
                         </option>

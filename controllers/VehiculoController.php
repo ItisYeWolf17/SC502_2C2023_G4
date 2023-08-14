@@ -48,9 +48,11 @@
 
         $vehiculo = Vehiculo::find($_GET['id']);
         $propietario = Cliente::all();
+        
         $selectedPropietarioId = $vehiculo->idPropietario;
         $nombrePropietario = '';
         $propietarioId = $vehiculo->idPropietario;
+        
         foreach($propietario as $cliente){
             if($cliente->id == $propietarioId){
                 $nombrePropietario = $cliente->nombre_propietario. ' '.$cliente->apellido_propietario;

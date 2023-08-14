@@ -3,6 +3,7 @@
 
 namespace Controllers;
 
+use Model\Sistema;
 use MVC\Router;
 
 use Classes\Reportes;
@@ -26,15 +27,27 @@ class FallasController
 
     public static function updateFalla(Router $router)
     {
-
+        session_start();
         function redondeo($numero){
             return round($numero/5) *5;
         }
-        session_start();
+        
         if (!is_numeric($_GET['id']))
             return;
 
-        $falla = Fallas::find($_GET['id']);
+            $falla = Fallas::find($_GET['id']);
+            $sistema = Sistema::all();
+
+            $selectedSistemaId = $falla->idSistemas;
+            $nombreSistema = '';
+            $sistemaId = $falla->idSistemas;
+
+            foreach ($sistema as $sistemaFalla) {
+                if ($sistemaFalla->id == $sistemaId) { // Usar $selectedSistemaId en lugar de $sistemaId
+                    $nombreSistema = $sistemaFalla->nombre_sistema;
+                    break;
+                }
+            }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $falla->sincronizar($_POST);
@@ -43,9 +56,12 @@ class FallasController
             $falla->guardar();
             header('Location: /fallas');
         }
+
         $router->render('/servicios/actualizarFalla', [
-            'falla' => $falla
-  
+            'falla' => $falla,
+            'nombreSistema' => $nombreSistema, 
+            'selectedSistemaId' => $selectedSistemaId, 
+            'sistemas' => $sistema
         ]);
     }
 
