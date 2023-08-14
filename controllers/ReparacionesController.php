@@ -4,6 +4,8 @@
 namespace Controllers;
 
 
+use Model\Fallas;
+use Model\Vehiculo;
 use MVC\Router;
 
 use Classes\Reportes;
@@ -33,7 +35,30 @@ class ReparacionesController
             return;
 
             $reparacion = Reparacion::find($_GET['id']);
+            $vehiculo = Vehiculo::all();
+            $falla = Fallas::all();
 
+            //Ver vehiculos
+            $selectedVehiculoId = $reparacion->idVehiculos;
+            $marca_vehiculo = '';
+            $vehiculoId = $reparacion->idVehiculos;
+
+            foreach($vehiculo as $vehiculoReparacion){
+                if($vehiculoReparacion->id == $vehiculoId){
+                    break;
+                }
+            }
+
+            //Ver Fallas
+            $selecteFallaId = $reparacion->idFallas;
+            $nombre_falla = '';
+            $fallaId = $reparacion->idFallas;
+
+            foreach($falla as $fallaReparacion){
+                if($fallaReparacion->id == $fallaId){
+                    break;
+                }
+            }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $reparacion->sincronizar($_POST);
@@ -42,13 +67,20 @@ class ReparacionesController
         }
 
         $router->render('servicios/actualizarReparacion', [
-            'reparacion' => $reparacion
+            'reparacion' => $reparacion,
+            'marcaVehiculo' => $marca_vehiculo,
+            'selectedVehiculoId' => $selectedVehiculoId,
+            'vehiculos' => $vehiculo,
+            'nombreFalla' => $nombre_falla, 
+            'selectedFallaId' => $selecteFallaId, 
+            'fallas' => $falla
         ]);
     }
 
     public static function crear()
     {
         $reparacion = new Reparacion($_POST);
+   
  
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 

@@ -41,7 +41,7 @@ $cliente = new Cliente();
     <div class="formulario-crear">
     <form method="POST" action="/crear-reparacion">
         <div class="campo">
-            <label class="campo__label" for="idFallas">ID de reparacion</label>
+            <label class="campo__label" for="idFallas">ID de falla</label>
             <input class="campo__field" type="text" name="idFallas" placeholder="Direccion"
             id="idFallas" value="<?php $reparacion -> idFallas;?>">
         </div>

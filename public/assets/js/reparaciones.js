@@ -42,6 +42,7 @@ const listReparaciones = async () => {
         reparaciones.forEach((reparaciones) => {
             content += `
             <tr>
+                <td>${reparaciones.id}</td>
                 <td>${reparaciones.marca_vehiculo}</td>
                 <td>${reparaciones.nombre_falla}</td>
                 <td>${reparaciones.precio_reparacion}</td>

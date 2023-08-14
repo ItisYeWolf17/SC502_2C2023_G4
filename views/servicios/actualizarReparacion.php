@@ -36,17 +36,30 @@
     <div class="formulario-crear">
         <form method="POST">
 
-            <div class="campo">
-                <label class="campo__label" for="idFallas">ID del vehiculo</label>
-                <input class="campo__field" type="text" name="idFallas" placeholder="Direccion" id="idFallas"
-                    value="<?php echo s($reparacion->idFallas); ?>">
+        <div class="campo">
+                <label class="campo__label" for="idVehiculos">Vehiculo</label>
+                <select class="campo__field" name="idVehiculos" id="idVehiculos">
+                    <?php
+                    foreach ($vehiculos as $vehiculo): ?>
+                        <option value="<?php echo $vehiculo->id; ?>" <?php echo $vehiculo->id == $selectedVehiculoId ? 'selected' : ''; ?>>
+                            <?php echo $vehiculo->marca_vehiculo; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
             </div>
 
             <div class="campo">
-                <label class="campo__label" for="idVehiculos">ID del vehiculo</label>
-                <input class="campo__field" type="text" name="idVehiculos" placeholder="Direccion"
-                    id="idVehiculos" value="<?php echo s($reparacion->idVehiculos); ?>">
+                <label class="campo__label" for="idFallas">Falla</label>
+                <select class="campo__field" name="idFallas" id="idFallas">
+                    <?php
+                    foreach ($fallas as $falla): ?>
+                        <option value="<?php echo $falla->id; ?>" <?php echo $falla->id == $selectedFallaId ? 'selected' : ''; ?>>
+                            <?php echo $falla->nombre_falla; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
             </div>
+
 
             <div class="campo">
                 <input type="submit" class="btn-enviar">

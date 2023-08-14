@@ -42,14 +42,14 @@ class APIController
 
     public static function reparaciones()
     {
-        $consulta = "SELECT  a.id, a.idFallas, a.idVehiculos, b.marca_vehiculo, c.nombre_falla, c.precio_reparacion
+        $consulta = "SELECT  a.id, b.marca_vehiculo, c.nombre_falla, c.precio_reparacion
         FROM vehiculos_fallas a 
         INNER JOIN vehiculos b 
         ON a.idVehiculos = b.id
         INNER JOIN fallas c
-        ON a.idVehiculos = c.id;";
+        ON a.idFallas = c.id
+        ORDER BY a.id;";
         $reparacion = Reparacion::SQL($consulta);
-
         echo json_encode($reparacion);
     }
 
@@ -202,7 +202,7 @@ class APIController
     }
 
 
- 
+
 
 
 }
