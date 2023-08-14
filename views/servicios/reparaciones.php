@@ -49,9 +49,10 @@ session_start();
         <thead>
             
             <tr>
-                <th class="centered">Id</th>
-                <th class="centered ">Id de Falla</th>
-                <th class="centered ">Id de Vehiculo</th>
+                <th class="centered ">Vehiculo</th>
+                <th class="centered ">Falla</th>
+                <th class="centered ">Precio reparacion</th>
+
                 <th class="centered">Acciones</th>
             </tr>
         </thead>

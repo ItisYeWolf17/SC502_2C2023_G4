@@ -42,9 +42,15 @@ class APIController
 
     public static function reparaciones()
     {
-        $inventario = Reparacion::all();
+        $consulta = "SELECT  a.id, a.idFallas, a.idVehiculos, b.marca_vehiculo, c.nombre_falla, c.precio_reparacion
+        FROM vehiculos_fallas a 
+        INNER JOIN vehiculos b 
+        ON a.idVehiculos = b.id
+        INNER JOIN fallas c
+        ON a.idVehiculos = c.id;";
+        $reparacion = Reparacion::SQL($consulta);
 
-        echo json_encode($inventario);
+        echo json_encode($reparacion);
     }
 
     public static function clientes()

@@ -10,6 +10,9 @@ class Reparacion extends ActiveRecord{
      public $id;
      public $idFallas;
      public $idVehiculos;
+     public $marca_vehiculo;
+     public $nombre_falla;
+     public $precio_reparacion;
 
 
 

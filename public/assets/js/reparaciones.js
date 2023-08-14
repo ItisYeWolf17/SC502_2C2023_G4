@@ -42,9 +42,9 @@ const listReparaciones = async () => {
         reparaciones.forEach((reparaciones) => {
             content += `
             <tr>
-                <td>${reparaciones.id}</td>
-                <td>${reparaciones.idFallas}</td>
-                <td>${reparaciones.idVehiculos}</td>
+                <td>${reparaciones.marca_vehiculo}</td>
+                <td>${reparaciones.nombre_falla}</td>
+                <td>${reparaciones.precio_reparacion}</td>
                 <td class="contenedor-formact">
                     <div class="contenido-opciones">
                         <div>
