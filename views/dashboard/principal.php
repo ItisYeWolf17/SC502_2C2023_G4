@@ -109,7 +109,19 @@ session_start();
         </div>
       </a>
     </article>
+
+    <article class="card-servicio">
+      <a class="link" href="/reparaciones">
+        <div class="img-servicio">
+          <img src="./assets/img/hombre-abrio-capo-automovil-reparar-vehiculo-coche-averiado-ilustracion-vectorial-plana_124715-1548.avif">
+        </div>
+        <div class="info-servicio">
+          <h4>Fallos en Carros</h4>
+        </div>
+      </a>
+    </article>
   </section>
+
   <h2 class="titulo-servicios">Graficos</h2>
   <section class="section-graficos">
 

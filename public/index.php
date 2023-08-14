@@ -8,9 +8,10 @@ use Controllers\InventarioController;
 use Controllers\LoginController;
 use Controllers\ClienteController;
 use Controllers\VehiculoController;
-use Model\Usuario;
-use MVC\Router;
+use Controllers\ReparacionesController;
 use Controllers\SistemasController;
+use MVC\Router;
+
 
 $router = new Router();
 
@@ -97,6 +98,18 @@ $router->post('/crear-falla', [FallasController::class, 'crear']);
 $router->get('/updateFalla', [FallasController::class, 'updateFalla']);
 $router->post('/updateFalla', [FallasController::class, 'updateFalla']);
 $router->post('/api/eliminarFalla', [APIController::class, 'eliminarFalla']);
+
+
+//Reparaciones 
+$router->get('/api/reparaciones', [APIController::class, 'reparaciones']);
+$router ->get('/reparaciones', [ReparacionesController::class, 'reparaciones']);
+$router->get('/addReparacion', [ReparacionesController::class, 'addReparacion']);
+$router->post('/crear-reparacion', [ReparacionesController::class, 'crear']);
+$router->get('/updateReparacion', [ReparacionesController::class, 'updateReparacion']);
+$router->post('/updateReparacion', [ReparacionesController::class, 'updateReparacion']);
+$router->post('/api/eliminarReparacion', [APIController::class, 'eliminarReparacion']);
+
+
 
 $router -> comprobarRutas();
 

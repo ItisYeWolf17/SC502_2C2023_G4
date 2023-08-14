@@ -8,10 +8,14 @@ use Model\Cliente;
 use Model\Sistema;
 use Model\Usuario;
 use Model\Vehiculo;
+use Model\Reparacion;
+
 
 
 class APIController
 {
+
+
     public static function inventario()
     {
         $inventario = Inventario::all();
@@ -34,6 +38,13 @@ class APIController
 
         $fallas = Fallas::SQL($consulta);
         echo json_encode($fallas);
+    }
+
+    public static function reparaciones()
+    {
+        $inventario = Reparacion::all();
+
+        echo json_encode($inventario);
     }
 
     public static function clientes()
@@ -170,6 +181,22 @@ class APIController
         $resultado = $sistema->eliminar();
         echo json_encode($resultado);
     }
+
+    public static function eliminarReparacion()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+            $sistema = Reparacion::find($_POST['id']);
+            $sistema->eliminar();
+
+            header('Location:' . $_SERVER['HTTP_REFERER']);
+        }
+        $resultado = $sistema->eliminar();
+        echo json_encode($resultado);
+    }
+
+
+ 
 
 
 }
