@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,8 +37,8 @@
         <form method="POST">
             <div class="campo">
                 <label class="campo__label" for="placa_vehiculo">Placa del Vehiculo</label>
-                <input class="campo__field" type="text" name="placa_vehiculo" placeholder="SSD-213"
-                    id="placa_vehiculo" value="<?php echo s($vehiculo->placa_vehiculo); ?>">
+                <input class="campo__field" type="text" name="placa_vehiculo" placeholder="SSD-213" id="placa_vehiculo"
+                    value="<?php echo s($vehiculo->placa_vehiculo); ?>">
             </div>
 
             <div class="campo">
@@ -48,14 +49,19 @@
 
             <div class="campo">
                 <label class="campo__label" for="year_vehiculo">Año</label>
-                <input class="campo__field" type="text" name="year_vehiculo" placeholder="2024"
-                    id="year_vehiculo" value="<?php echo s($vehiculo->year_vehiculo); ?>">
+                <input class="campo__field" type="text" name="year_vehiculo" placeholder="2024" id="year_vehiculo"
+                    value="<?php echo s($vehiculo->year_vehiculo); ?>">
             </div>
 
             <div class="campo">
                 <label class="campo__label" for="idPropietario">Propietario</label>
-                <input class="campo__field" type="text" name="idPropietario" placeholder="1"
-                    id="idPropietario" value="<?php echo s($vehiculo->idPropietario); ?>">
+                <select class="campo__field" name="idPropietario" id="idPropietario">
+                    <?php foreach ($propietarios as $propietario): ?>
+                        <option value="<?php echo $propietario->id; ?>" <?php echo $propietario->id == $selectedPropietarioId ? 'selected' : ''; ?>>
+                            <?php echo $propietario->nombre_propietario . ' ' . $propietario->apellido_propietario; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
             </div>
 
             <div class="campo">

@@ -3,6 +3,7 @@
 
     use Classes\Reportes;
 
+    use Model\Cliente;
     use Model\Vehiculo;
 
     use MVC\Router;
@@ -46,17 +47,31 @@
             return;
 
         $vehiculo = Vehiculo::find($_GET['id']);
+        $propietario = Cliente::all();
+        $selectedPropietarioId = $vehiculo->idPropietario;
+        $nombrePropietario = '';
+        $propietarioId = $vehiculo->idPropietario;
+        foreach($propietario as $cliente){
+            if($cliente->id == $propietarioId){
+                $nombrePropietario = $cliente->nombre_propietario. ' '.$cliente->apellido_propietario;
+                break;
+            }
+        }
 
-
+        
+        
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $vehiculo->sincronizar($_POST);
+        
             $vehiculo->guardar();
             header('Location: /vehiculos');
             
         }
         $router->render('/servicios/actualizarVehiculo', [
-            'vehiculo' => $vehiculo
-  
+            'vehiculo' => $vehiculo, 
+            'nombrePropietario' => $nombrePropietario,
+            'selectedPropietarioId' => $selectedPropietarioId,
+            'propietarios' => $propietario
         ]);
     }
 
