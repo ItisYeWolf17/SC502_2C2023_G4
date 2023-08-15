@@ -100,17 +100,6 @@ session_start();
     </article>
 
     <article class="card-servicio">
-      <a class="link" href="/facturar">
-        <div class="img-servicio">
-          <img src="./assets/img/recibo-factura-papel-plano-dibujos-animados-o-factura-pagar-aislado_101884-255.avif">
-        </div>
-        <div class="info-servicio">
-          <h4>Facturar</h4>
-        </div>
-      </a>
-    </article>
-
-    <article class="card-servicio">
       <a class="link" href="/reparaciones">
         <div class="img-servicio">
           <img src="./assets/img/hombre-abrio-capo-automovil-reparar-vehiculo-coche-averiado-ilustracion-vectorial-plana_124715-1548.avif">
