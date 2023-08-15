@@ -81,11 +81,8 @@ class ReparacionesController
     public static function crear()
     {
         $reparacion = new Reparacion($_POST);
-        $vehiculo = Vehiculo::all();
-        $falla = Fallas::all();
  
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             $reparacion->sincronizar($_POST);
             $resultado = $reparacion->guardar();
             if ($resultado) {

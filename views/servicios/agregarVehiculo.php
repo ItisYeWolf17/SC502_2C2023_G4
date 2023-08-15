@@ -1,5 +1,8 @@
 <?php
+use Model\Cliente;
 session_start();
+
+$propietarios = Cliente::all();
 ?>
 
 <!DOCTYPE html>
@@ -54,10 +57,16 @@ session_start();
         </div>
 
         <div class="campo">
-            <label class="campo__label" for="idPropietario">Dueño del Vehiculo</label>
-            <input class="campo__field" type="texy" name="idPropietario" placeholder="2" id="idPropietario"
-            value="<?php echo s($vehiculo -> idPropietario);?>">
-        </div>
+                <label class="campo__label" for="idPropietario">Propietario</label>
+                <select class="campo__field" name="idPropietario" id="idPropietario">
+                    <?php
+                    foreach ($propietarios as $propietario): ?>
+                        <option value="<?php echo $propietario->id; ?>">
+                            <?php echo $propietario->nombre_propietario . ' ' . $propietario->apellido_propietario; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
 
         <div class="campo">
                 <input type="submit" class="btn-enviar">

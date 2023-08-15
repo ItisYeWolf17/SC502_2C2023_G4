@@ -1,9 +1,9 @@
 <?php
+use Model\Sistema;
 session_start();
 
-use Model\Cliente;
 
-$cliente = new Cliente();
+$sistemas = Sistema::all();
 
 
 ?>
@@ -59,10 +59,16 @@ $cliente = new Cliente();
         </div>
 
         <div class="campo">
-            <label class="campo__label" for="idSistemas">Id del sistema a reparar</label>
-            <input class="campo__field" type="text" name="idSistemas" placeholder="Direccion"
-            id="idSistemas" value="<?php $falla -> idSistemas;?>">
-        </div>
+                <label class="campo__label" for="idSistemas">Propietario</label>
+                <select class="campo__field" name="idSistemas" id="idSistemas">
+                    <?php
+                    foreach ($sistemas as $sistema): ?>
+                        <option value="<?php echo $sistema->id; ?>">
+                            <?php echo $sistema->nombre_sistema; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </div>
 
         <div class="campo">
                 <input type="submit" class="btn-enviar">
