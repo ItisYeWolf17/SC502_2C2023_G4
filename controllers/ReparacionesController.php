@@ -23,6 +23,7 @@ class ReparacionesController
 
     public static function addreparacion(Router $router)
     {
+
         $router->render('servicios/agregarReparaciones', [
         ]);
     }
@@ -80,7 +81,8 @@ class ReparacionesController
     public static function crear()
     {
         $reparacion = new Reparacion($_POST);
-   
+        $vehiculo = Vehiculo::all();
+        $falla = Fallas::all();
  
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -89,7 +91,9 @@ class ReparacionesController
             if ($resultado) {
                 header('Location: /reparaciones');
             }
+            
         }
+        
     }
 
 
