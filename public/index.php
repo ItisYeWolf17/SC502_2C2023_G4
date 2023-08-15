@@ -109,7 +109,11 @@ $router->get('/updateReparacion', [ReparacionesController::class, 'updateReparac
 $router->post('/updateReparacion', [ReparacionesController::class, 'updateReparacion']);
 $router->post('/api/eliminarReparacion', [APIController::class, 'eliminarReparacion']);
 
+//Grafico top 4 fallas mas comunes
+$router->get('/api/grafico3', [APIController::class, 'topFallas']);
 
+//Grafico top 4 sistemas mas comunes
+$router->get('/api/grafico4', [APIController::class, 'topFallas2']);
 
 $router -> comprobarRutas();
 

@@ -102,7 +102,8 @@ session_start();
     <article class="card-servicio">
       <a class="link" href="/reparaciones">
         <div class="img-servicio">
-          <img src="./assets/img/hombre-abrio-capo-automovil-reparar-vehiculo-coche-averiado-ilustracion-vectorial-plana_124715-1548.avif">
+          <img
+            src="./assets/img/hombre-abrio-capo-automovil-reparar-vehiculo-coche-averiado-ilustracion-vectorial-plana_124715-1548.avif">
         </div>
         <div class="info-servicio">
           <h4>Fallos en Carros</h4>
@@ -111,7 +112,7 @@ session_start();
     </article>
   </section>
 
-  <h2 class="titulo-servicios">Graficos</h2>
+  <h2 class="titulo-servicios graficotitle">Graficos</h2>
   <section class="section-graficos">
 
     <div class="grafico-producto">
@@ -121,7 +122,7 @@ session_start();
         <script>
           const ctx = document.getElementById('myChart');
           let myChart = new Chart(ctx, {
-            type: 'bar',
+            type: 'line',
             data: {
               datasets: [{
                 label: 'Stock de productos',
@@ -189,6 +190,94 @@ session_start();
               myChart2.data['labels'].push(element.nombre_propietario)
               myChart2.data['datasets'][0].data.push(element.frecuencia)
               myChart2.update();
+            });
+          }
+
+        </script>
+
+      </canvas>
+
+
+    </div>
+
+
+    <div class="grafico-producto">
+      <h2 class="titulo-servicios">Top 4 fallos frecuentes</h2>
+
+      <canvas id="myChart3">
+        <script>
+          const ctx3 = document.getElementById('myChart3');
+          let myChart3 = new Chart(ctx3, {
+            type: 'doughnut',
+            data: {
+              datasets: [{
+                label: 'Fallas frecuentes',
+                backgroundColor: ['#438c6c', '#6bf1ab', '#337351', '#57C48B']
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+          let urlGrafico3 = 'http://localhost:3000/api/grafico3';
+          fetch(urlGrafico3)
+            .then(response => response.json())
+            .then(datos => mostrarGrafico3(datos))
+            .catch(error => console.log(error))
+
+          const mostrarGrafico3 = (clientes) => {
+            clientes.forEach(element => {
+              myChart3.data['labels'].push(element.nombre_falla)
+              myChart3.data['datasets'][0].data.push(element.frecuencia)
+              myChart3.update();
+            });
+          }
+
+        </script>
+
+      </canvas>
+
+
+    </div>
+
+
+    <div class="grafico-producto">
+      <h2 class="titulo-servicios">Top 4 sistemas con mas fallas</h2>
+
+      <canvas id="myChart4">
+        <script>
+          const ctx4 = document.getElementById('myChart4');
+          let myChart4 = new Chart(ctx4, {
+            type: 'doughnut',
+            data: {
+              datasets: [{
+                label: 'Sistemas con fallas mas frecuentes',
+                backgroundColor: ['#438c6c', '#6bf1ab', '#337351', '#57C48B']
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+          let urlGrafico4 = 'http://localhost:3000/api/grafico4';
+          fetch(urlGrafico4)
+            .then(response => response.json())
+            .then(datos => mostrarGrafico4(datos))
+            .catch(error => console.log(error))
+
+          const mostrarGrafico4 = (clientes) => {
+            clientes.forEach(element => {
+              myChart4.data['labels'].push(element.nombre_sistema)
+              myChart4.data['datasets'][0].data.push(element.frecuencia)
+              myChart4.update();
             });
           }
 

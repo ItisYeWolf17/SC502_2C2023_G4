@@ -2,12 +2,9 @@
 
 
 namespace Controllers;
-
 use Model\Sistema;
 use MVC\Router;
-
 use Classes\Reportes;
-
 use Model\Fallas;
 
 class FallasController

@@ -6,6 +6,8 @@ use Model\Fallas;
 use Model\Inventario;
 use Model\Cliente;
 use Model\Sistema;
+use Model\TopFallas;
+use Model\TopFallas2;
 use Model\Usuario;
 use Model\Vehiculo;
 use Model\Reparacion;
@@ -38,6 +40,30 @@ class APIController
 
         $fallas = Fallas::SQL($consulta);
         echo json_encode($fallas);
+    }
+
+    public static function topFallas(){
+        $consulta = "SELECT c.nombre_falla, COUNT(*) AS frecuencia
+        FROM vehiculos_fallas a 
+        INNER JOIN fallas c ON a.idFallas = c.id
+        GROUP BY c.id, c.nombre_falla, c.precio_reparacion
+        ORDER BY frecuencia DESC
+        LIMIT 4;";
+
+        $topFallas = TopFallas::SQL($consulta);
+        echo json_encode($topFallas);
+    }
+    public static function topFallas2(){
+        $consulta = "SELECT s.nombre_sistema, COUNT(*) AS frecuencia
+        FROM Vehiculos_Fallas vf
+        INNER JOIN Fallas f ON vf.idFallas = f.id
+        INNER JOIN Sistemas s ON f.idSistemas = s.id
+        GROUP BY s.id, s.nombre_sistema
+        ORDER BY frecuencia DESC
+        LIMIT 4;";
+
+        $topFallas2 = TopFallas2::SQL($consulta);
+        echo json_encode($topFallas2);
     }
 
     public static function reparaciones()

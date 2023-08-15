@@ -52,7 +52,7 @@ session_start();
             <thead>
                 
                 <tr>
-                    <th class="centered">Codigo</th>
+                    <th class="centered">ID</th>
                     <th class="centered ">Nombre</th>
                     <th class="centered">Costo IVA</th>
                     <th class="centered">Stock</th>

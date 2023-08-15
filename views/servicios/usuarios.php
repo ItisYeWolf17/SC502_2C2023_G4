@@ -49,7 +49,7 @@ session_start();
         <thead>
             
             <tr>
-                <th class="centered">id</th>
+                <th class="centered">ID</th>
                 <th class="centered ">Nombre</th>
                 <th class="centered">Apellido</th>
                 <th class="centered">Cedula</th>

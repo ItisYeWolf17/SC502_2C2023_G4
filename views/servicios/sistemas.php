@@ -49,7 +49,7 @@ session_start();
         <thead>
             
             <tr>
-                <th class="centered">Id</th>
+                <th class="centered">ID</th>
                 <th class="centered ">Nombre de Sistema</th>
                 <th class="centered">Acciones</th>
             </tr>

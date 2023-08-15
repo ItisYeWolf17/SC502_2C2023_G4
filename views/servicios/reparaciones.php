@@ -49,7 +49,7 @@ session_start();
         <thead>
             
             <tr>
-                <th class="centered ">id</th>
+                <th class="centered ">ID</th>
                 <th class="centered ">Vehiculo</th>
                 <th class="centered ">Falla</th>
                 <th class="centered ">Precio reparacion</th>

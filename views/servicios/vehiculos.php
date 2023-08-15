@@ -55,7 +55,7 @@ session_start();
         <thead>
             
             <tr>
-                <th class="centered">#</th>
+                <th class="centered">ID</th>
                 <th class="centered ">Placa</th>
                 <th class="centered">Marca</th>
                 <th class="centered">Año</th>
