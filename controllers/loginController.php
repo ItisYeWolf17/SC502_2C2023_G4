@@ -13,11 +13,15 @@ class LoginController
 
 
     public static function usuarios(Router $router){
+        session_start();
+        isAuth();
         $router->render('servicios/usuarios',[
 
         ]);
     }
     public static function principal(Router $router){
+        session_start();
+        isAuth();
         $router->render('dashboard/principal');
     }
 
@@ -75,7 +79,9 @@ class LoginController
     }
     public static function logout()
     {
-        echo "Desde logout";
+        session_start();
+        $_SESSION = [];
+        header('Location: /');
     }
     public static function olvide(Router $router)
     {

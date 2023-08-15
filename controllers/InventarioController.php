@@ -13,6 +13,9 @@ class InventarioController
 {
     public static function inventario(Router $router)
     {
+        session_start();
+
+        isAuth();
         $router->render('servicios/inventario', [
 
         ]);

@@ -20,6 +20,9 @@ class APIController
 
     public static function inventario()
     {
+        session_start();
+
+        isAuth();
         $inventario = Inventario::all();
 
         echo json_encode($inventario);
@@ -27,12 +30,18 @@ class APIController
 
     public static function sistemas()
     {
+        session_start();
+
+        isAuth();
         $sistemas = Sistema::all();
         echo json_encode($sistemas);
     }
 
     public static function fallas()
     {
+        session_start();
+
+        isAuth();
         $consulta = "SELECT a.id, a.nombre_falla, a.precio_reparacion, a.iva, a.precio_reparacion_iva, a.idSistemas, b.nombre_sistema
         FROM Fallas a 
         INNER JOIN Sistemas b
@@ -43,6 +52,9 @@ class APIController
     }
 
     public static function topFallas(){
+        session_start();
+
+        isAuth();
         $consulta = "SELECT c.nombre_falla, COUNT(*) AS frecuencia
         FROM vehiculos_fallas a 
         INNER JOIN fallas c ON a.idFallas = c.id
@@ -54,6 +66,9 @@ class APIController
         echo json_encode($topFallas);
     }
     public static function topFallas2(){
+        session_start();
+
+        isAuth();
         $consulta = "SELECT s.nombre_sistema, COUNT(*) AS frecuencia
         FROM Vehiculos_Fallas vf
         INNER JOIN Fallas f ON vf.idFallas = f.id
@@ -68,6 +83,9 @@ class APIController
 
     public static function reparaciones()
     {
+        session_start();
+
+        isAuth();
         $consulta = "SELECT  a.id, b.marca_vehiculo, c.nombre_falla, c.precio_reparacion
         FROM vehiculos_fallas a 
         INNER JOIN vehiculos b 
@@ -81,6 +99,9 @@ class APIController
 
     public static function clientes()
     {
+        session_start();
+
+        isAuth();
         $clientes = Cliente::all();
 
         echo json_encode($clientes);
@@ -88,6 +109,9 @@ class APIController
 
     public static function vehiculos()
     {
+        session_start();
+
+        isAuth();
 
         $consulta = "SELECT A.id, A.placa_vehiculo, A.marca_vehiculo, A.year_vehiculo, A.idPropietario, CONCAT(B.nombre_propietario, ' ', B.apellido_propietario) AS 'propietario' FROM vehiculos A INNER JOIN propietarios b  WHERE a.idPropietario = b.id;";
         $vehiculos = Vehiculo::SQL($consulta);
@@ -98,6 +122,9 @@ class APIController
 
     public static function usuarios()
     {
+        session_start();
+
+        isAuth();
         $usuarios = Usuario::all();
         echo json_encode($usuarios);
     }

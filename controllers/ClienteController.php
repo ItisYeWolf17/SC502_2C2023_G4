@@ -8,6 +8,10 @@ use Classes\Reportes;
 
 class ClienteController{
     public static function clientes(Router $router){
+        session_start();
+
+        isAuth();
+        
         $router->render('servicios/clientes',[
 
         ]);
@@ -15,6 +19,7 @@ class ClienteController{
 
     public static function addCliente(Router $router){
         $router -> render('servicios/agregarCliente', [
+            
 
         ]);
     }

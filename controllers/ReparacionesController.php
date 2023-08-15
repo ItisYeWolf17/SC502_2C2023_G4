@@ -16,6 +16,9 @@ class ReparacionesController
 {
     public static function reparaciones(Router $router)
     {
+        session_start();
+
+        isAuth();
         $router->render('servicios/reparaciones', [
 
         ]);

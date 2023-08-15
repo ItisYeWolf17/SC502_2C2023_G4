@@ -11,6 +11,9 @@ class FallasController
 {
     public static function fallas(Router $router)
     {
+        session_start();
+
+        isAuth();
         $router->render('servicios/fallas', [
 
         ]);

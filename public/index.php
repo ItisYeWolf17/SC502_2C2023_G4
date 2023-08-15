@@ -7,6 +7,7 @@ use Controllers\FallasController;
 use Controllers\InventarioController;
 use Controllers\LoginController;
 use Controllers\ClienteController;
+use Controllers\PrincipalController;
 use Controllers\VehiculoController;
 use Controllers\ReparacionesController;
 use Controllers\SistemasController;
@@ -22,6 +23,8 @@ $router ->get('/', [LoginController::class, 'indexIni']);
 $router ->get('/login', [LoginController::class, 'login' ]);
 $router ->post('/login', [LoginController::class, 'login' ]);
 $router ->get('/logout', [LoginController::class, 'logout' ]);
+//Principal 
+$router ->get('/principal', [LoginController::class, 'principal' ]);
 
 //Recuperar password 
 $router ->get('/olvide', [LoginController::class, 'olvide' ]);
