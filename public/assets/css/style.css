@@ -805,7 +805,7 @@ img {
   grid-template-columns: auto auto;
   justify-content: center;
   gap: 10px;
-  padding-bottom: 20rem;
+  margin-bottom: 20rem;
 }
 
 .grafico-producto {
@@ -818,13 +818,6 @@ img {
 
 }
 
-
-
-@media(max-width: 768px) {
-  .section-graficos {
-    display: block;
-  }
-}
 
 @media (max-width: 768px) {
   .grafico-producto {
