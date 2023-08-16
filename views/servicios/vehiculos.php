@@ -50,6 +50,12 @@ session_start();
         <button class="titulo-servicios abrir-codigo">Generar Reporte</button>
     </form>
 
+    <?php
+        if(isset($error)){
+            echo "<p>$error</p>";
+        }
+    ?>
+    
     <table id="datatable_vehiculos" class="datatable">
         
         <thead>

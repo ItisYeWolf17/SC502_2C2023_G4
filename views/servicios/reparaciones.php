@@ -41,7 +41,7 @@ session_start();
 
     <a class="titulo-servicios abrir-codigo" href="/addReparacion">Añadir Reparacion</a>
 
-    <form action="/reporte-fallas" method="post">
+    <form action="/reporte-reparaciones" method="post">
         <button class="titulo-servicios abrir-codigo">Generar Reporte</button>
     </form>
     <table id="datatable_reparaciones" class="datatable">

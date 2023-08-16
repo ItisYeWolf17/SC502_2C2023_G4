@@ -109,7 +109,7 @@ class ReparacionesController
 
         $pdf->SetCreator('Taller DBAKA');
         $pdf->SetAuthor('Taller DBAKA');
-        $pdf->SetTitle('Reporte de Inventario');
+        $pdf->SetTitle('Reporte de Reparaciones');
 
         $pdf->AddPage();
         $pdf->SetFont('Helvetica', 'B', 12);
@@ -133,36 +133,28 @@ class ReparacionesController
         $pdf->Cell(40, 26, '', 0, 0, 'C');
         $pdf->SetTextColor(34, 68, 136);
         $pdf->SetFont('helvetica', 'B', 15);
-        $pdf->Cell(85, 6, 'LISTA DE PRODUCTOS', 0, 0, 'C');
+        $pdf->Cell(85, 6, 'LISTA DE REPARACIONES', 0, 0, 'C');
 
         $pdf->Ln(10); //Salto de Linea
         $pdf->SetTextColor(0, 0, 0);
 
         $pdf->SetFillColor(232, 232, 232);
         $pdf->SetFont('helvetica', 'B', 12);
-        $pdf->Cell(10, 6, '#', 1, 0, 'C', 1);
-        $pdf->Cell(20, 6, 'IVA', 1, 0, 'C', 1);
-        $pdf->Cell(20, 6, 'Bruto', 1, 0, 'C', 1);
-        $pdf->Cell(25, 6, 'Costos IVA', 1, 0, 'C', 1);
-        $pdf->Cell(35, 6, 'Margen Utilidad', 1, 0, 'C', 1);
-        $pdf->Cell(30, 6, 'Precio Cliente', 1, 0, 'C', 1);
-        $pdf->Cell(20, 6, 'Stock', 1, 1, 'C', 1);
+        $pdf->Cell(50, 6, '#', 1, 0, 'C', 1);
+        $pdf->Cell(50, 6, 'Falla', 1, 0, 'C', 1);
+        $pdf->Cell(50, 6, 'Vehiculo', 1, 1, 'C', 1);
 
         $pdf->SetFont('helvetica', '', 10);
 
-        $productos = reparacion::all();
+        $reparaciones = Reparacion::all();
 
-        foreach ($productos as $producto) {
-            $pdf->Cell(10, 6, $producto->id, 1, 0, 'C');
-            $pdf->Cell(20, 6, $producto->iva_producto, 1, 0, 'C');
-            $pdf->Cell(20, 6, $producto->costo_bruto, 1, 0, 'C');
-            $pdf->Cell(25, 6, $producto->costo_iva, 1, 0, 'C');
-            $pdf->Cell(35, 6, $producto->margen_utilidad, 1, 0, 'C');
-            $pdf->Cell(30, 6, $producto->precio_cliente, 1, 0, 'C');
-            $pdf->Cell(20, 6, $producto->cantidad, 1, 1, 'C');
+        foreach ($reparaciones as $reparacion) {
+            $pdf->Cell(50, 6, $reparacion->id, 1, 0, 'C');
+            $pdf->Cell(50, 6, $reparacion->idFallas, 1, 0, 'C');
+            $pdf->Cell(50, 6, $reparacion->idVehiculos, 1, 1, 'C');
         }
 
-        $pdf->Output('Reporte-productos' . date('d_m_y') . '.pdf', 'I');
+        $pdf->Output('Reporte-Reparaciones' . date('d_m_y') . '.pdf', 'I');
 
     }
 }

@@ -10,6 +10,7 @@ class Email
     public $correo;
     public $nombre;
     public $token;
+    
     public function __construct($correo, $nombre, $token)
     {
         $this->correo = $correo;
