@@ -36,6 +36,8 @@ $router->post('/api/eliminarUsuario', [APIController::class, 'eliminarUsuario'])
 
 $router->get('/updateUser', [LoginController::class, 'updateUser']);
 $router->post('/updateUser', [LoginController::class, 'updateUser']);
+$router->post('/reporte-usuarios', [LoginController::class, 'generarReporte']);
+
 
 //Crear Cuenta
 $router ->get('/crear', [LoginController::class, 'crear' ]);
@@ -92,6 +94,7 @@ $router->post('/crear-sistema', [SistemasController::class, 'crear']);
 $router->get('/updateSistema', [SistemasController::class, 'updateSistema']);
 $router->post('/updateSistema', [SistemasController::class, 'updateSistema']);
 $router->post('/api/eliminarSistema', [APIController::class, 'eliminarSistema']);
+$router -> post('/reporte-sistemas', [SistemasController::class, 'generarReporte']);
 
 //Fallas
 $router->get('/api/fallas', [APIController::class, 'fallas']);
@@ -101,6 +104,8 @@ $router->post('/crear-falla', [FallasController::class, 'crear']);
 $router->get('/updateFalla', [FallasController::class, 'updateFalla']);
 $router->post('/updateFalla', [FallasController::class, 'updateFalla']);
 $router->post('/api/eliminarFalla', [APIController::class, 'eliminarFalla']);
+$router->post('/reporte-fallas', [FallasController::class, 'generarReporte']);
+
 
 
 //Reparaciones 
@@ -111,6 +116,7 @@ $router->post('/crear-reparacion', [ReparacionesController::class, 'crear']);
 $router->get('/updateReparacion', [ReparacionesController::class, 'updateReparacion']);
 $router->post('/updateReparacion', [ReparacionesController::class, 'updateReparacion']);
 $router->post('/api/eliminarReparacion', [APIController::class, 'eliminarReparacion']);
+$router -> post('/reporte-reparaciones', [ReparacionesController::class, 'generarReporte']);
 
 //Grafico top 4 fallas mas comunes
 $router->get('/api/grafico3', [APIController::class, 'topFallas']);

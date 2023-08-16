@@ -166,7 +166,7 @@ class LoginController
 
         $pdf -> SetCreator('Taller DBAKA');
         $pdf -> SetAuthor('Taller DBAKA');
-        $pdf -> SetTitle('Reporte de Clientes');
+        $pdf -> SetTitle('Reporte de Usuarios');
 
         $pdf -> AddPage();
         $pdf->SetFont('Helvetica', 'B', 12);
@@ -190,27 +190,31 @@ class LoginController
         $pdf->Cell(40,26,'',0,0,'C');
         $pdf->SetTextColor(34,68,136);
         $pdf->SetFont('helvetica','B', 15); 
-        $pdf->Cell(85,6,'LISTA DE CLIENTES',0,0,'C');
+        $pdf->Cell(85,6,'LISTA DE USUARIOS',0,0,'C');
 
         $pdf->Ln(10); //Salto de Linea
         $pdf->SetTextColor(0, 0, 0); 
 
         $pdf->SetFillColor(232,232,232);
         $pdf->SetFont('helvetica','B',12); 
-        $pdf->Cell(40,6,'#',1,0,'C',1);
-        $pdf->Cell(60,6,'Nombre',1,0,'C',1);
+        $pdf->Cell(10,6,'#',1,0,'C',1);
+        $pdf->Cell(30,6,'Nombre',1,0,'C',1);
         $pdf->Cell(35,6,'Apellidos',1,0,'C',1);
-        $pdf->Cell(35,6,'Cedula',1,1,'C',1); 
+        $pdf->Cell(35,6,'Cedula',1,0,'C',1); 
+        $pdf->Cell(45,6,'Correo',1,1,'C',1); 
+
 
         $pdf->SetFont('helvetica','',10);
 
-        $clientes = Cliente::all();
+        $usuarios = Usuario::all();
 
-        foreach($clientes as $cliente){
-            $pdf->Cell(40,6,$cliente->id,1,0,'C');
-            $pdf->Cell(60,6,$cliente->nombre_propietario,1,0,'C');
-            $pdf->Cell(35,6,$cliente->apellido_propietario,1,0,'C');
-            $pdf->Cell(35,6,$cliente->cedula_propietario,1,1,'C');
+        foreach($usuarios as $user){
+            $pdf->Cell(10,6,$user->id,1,0,'C');
+            $pdf->Cell(30,6,$user->nombre_usuario,1,0,'C');
+            $pdf->Cell(35,6,$user->apellido_usuario,1,0,'C');
+            $pdf->Cell(35,6,$user->cedula_usuario,1,0,'C');
+            $pdf->Cell(45,6,$user->correo,1,1,'C');
+
         }
 
         $pdf->Output('Reporte-Clientes'.date('d_m_y').'.pdf', 'I'); 

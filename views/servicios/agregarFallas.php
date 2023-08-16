@@ -42,24 +42,24 @@ $sistemas = Sistema::all();
     <form method="POST" action="/crear-falla">
         <div class="campo">
             <label class="campo__label" for="nombre_falla">Nombre de la falla</label>
-            <input class="campo__field" type="text" name="nombre_falla" placeholder="Direccion"
-            id="nombre_falla" value="<?php $falla -> nombre_falla;?>">
+            <input class="campo__field" type="text" name="nombre_falla" placeholder="Piston Quebrado"
+            id="nombre_falla" >
         </div>
 
         <div class="campo">
             <label class="campo__label" for="precio_reparacion">Precio de Reparacion sin iva</label>
-            <input class="campo__field" type="text" name="precio_reparacion" placeholder="Direccion"
-            id="precio_reparacion" value="<?php $falla -> precio_reparacion;?>">
+            <input class="campo__field" type="text" name="precio_reparacion" placeholder="20000"
+            id="precio_reparacion" >
         </div>
 
         <div class="campo">
             <label class="campo__label" for="iva">Cuota IVA</label>
-            <input class="campo__field" type="text" name="iva" placeholder="Direccion"
-            id="iva" value="<?php $falla -> iva;?>">
+            <input class="campo__field" type="text" name="iva" placeholder="13"
+            id="iva" >
         </div>
 
         <div class="campo">
-                <label class="campo__label" for="idSistemas">Propietario</label>
+                <label class="campo__label" for="idSistemas">Sistema Afectado</label>
                 <select class="campo__field" name="idSistemas" id="idSistemas">
                     <?php
                     foreach ($sistemas as $sistema): ?>

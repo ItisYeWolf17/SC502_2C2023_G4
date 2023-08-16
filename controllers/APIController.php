@@ -190,9 +190,13 @@ class APIController
     public static function eliminarVehiculo()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
             $vehiculo = Vehiculo::find($_POST['id']);
-            $vehiculo->eliminar();
+            try {
+                $vehiculo->eliminar();
+            } catch (\Throwable $th) {
+                $th->getMessage();
+                $error = "No se puede eliminar el vehiculo ya que existe una dependencia previa...";
+            }
 
             header('Location:' . $_SERVER['HTTP_REFERER']);
         }
