@@ -8,6 +8,10 @@ use Classes\Reportes;
 
 class ClienteController{
     public static function clientes(Router $router){
+        session_start();
+
+        isAuth();
+        
         $router->render('servicios/clientes',[
 
         ]);
@@ -15,6 +19,7 @@ class ClienteController{
 
     public static function addCliente(Router $router){
         $router -> render('servicios/agregarCliente', [
+            
 
         ]);
     }
@@ -29,6 +34,24 @@ class ClienteController{
                 header('Location: /clientes');
             }
         }
+    }
+
+    public static function updateClient(Router $router)
+    {
+        session_start();
+        if (!is_numeric($_GET['id']))
+            return;
+
+        $cliente = Cliente::find($_GET['id']);
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $cliente->sincronizar($_POST);
+            $cliente->guardar();
+            header('Location: /clientes');
+        }
+        $router->render('/servicios/actualizarCliente', [
+            'cliente' => $cliente
+        ]);
     }
 
     public static function generarReporte(){
@@ -83,7 +106,7 @@ class ClienteController{
         $clientes = Cliente::all();
 
         foreach($clientes as $cliente){
-            $pdf->Cell(40,6,$cliente->id_propietario,1,0,'C');
+            $pdf->Cell(40,6,$cliente->id,1,0,'C');
             $pdf->Cell(60,6,$cliente->nombre_propietario,1,0,'C');
             $pdf->Cell(35,6,$cliente->apellido_propietario,1,0,'C');
             $pdf->Cell(35,6,$cliente->cedula_propietario,1,1,'C');

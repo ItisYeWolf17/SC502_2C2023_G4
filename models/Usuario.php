@@ -5,24 +5,24 @@ namespace Model;
 class Usuario extends ActiveRecord{
     //Base de datos 
     protected static $tabla = 'usuarios';
-    protected static $columnasDB = ['id_usuario', 'nombre_usuario',
-     'apellido_usuario', 'cedula_usuario', 'Roles_id_rol', 'password','correo', 'token'];
+    protected static $columnasDB = ['id', 'nombre_usuario',
+     'apellido_usuario', 'cedula_usuario', 'idRol', 'token', 'correo', 'password' ];
 
-     public $id_usuario;
+     public $id;
      public $nombre_usuario;
      public $apellido_usuario;
      public $cedula_usuario;
-     public $Roles_id_rol;
+     public $idRol;
      public $password;
      public $correo;
      public $token;
 
      public function __construct($args = []){
-        $this->id_usuario = $args['id_usuario'] ?? null;
+        $this->id = $args['id'] ?? null;
         $this->nombre_usuario = $args['nombre_usuario'] ?? '';
         $this->apellido_usuario = $args['apellido_usuario'] ?? '';
         $this->cedula_usuario = $args['cedula_usuario'] ?? '';
-        $this->Roles_id_rol = $args['Roles_id_rol'] ?? null;
+        $this->idRol = $args['idRol'] ?? null;
         $this->password = $args['password'] ?? '';
         $this->correo = $args['correo'] ?? '';
         $this->token = $args['token'] ?? null;
@@ -37,7 +37,7 @@ class Usuario extends ActiveRecord{
       if(!$this -> cedula_usuario){
          self::$alertas['error'][] = 'La cedula del usuario es obligatorio';
       }
-      if(!$this -> Roles_id_rol){
+      if(!$this -> idRol){
          self::$alertas['error'][] = 'El rol del usuario es obligatorio';
       }
       if(!$this -> password){

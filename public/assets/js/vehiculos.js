@@ -45,15 +45,28 @@ const listVehiculos = async () => {
         vehiculos.forEach((vehiculos) => {
             content += `
             <tr>
-                <td>${vehiculos.id_vehiculo}</td>
+                <td>${vehiculos.id}</td>
                 <td>${vehiculos.placa_vehiculo}</td>
                 <td>${vehiculos.marca_vehiculo}</td>
                 <td>${vehiculos.year_vehiculo}</td>
-                <td>${vehiculos.Propietarios_id_propietario}</td>
-                <td>
-                 <button class="btn-ver btn-editar" data-id=${vehiculos.id_vehiculo}>Editar</button>
-                 <button class="btn-ver" data-id=${vehiculos.id_vehiculo}>Eliminar</button></td>
-            </tr>`;
+                <td>${vehiculos.propietario}</td>
+                <td class="contenedor-formact">
+                <div class="contenido-opciones">
+                        <div>
+                        <form action="/api/eliminarVehiculo" method="POST">
+                            <input type="hidden" name="id" value="${vehiculos.id}">
+                            <input type="submit" class="btn-ver" value="Eliminar">
+                        </form>
+                    </div>
+                    <div>
+                        <form action="/updateVehicle" method="GET">
+                            <input type="hidden" name="id" value="${vehiculos.id}">
+                            <input type="submit" class="btn-ver" value="Editar">
+                        </form>
+                    </div>
+                </div>
+             </td>
+        </tr>`;
         });
         tableBody_vehiculos.innerHTML = content;
     } catch (ex) {

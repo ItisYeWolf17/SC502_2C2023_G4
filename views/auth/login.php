@@ -19,9 +19,7 @@
             <div class="campo">
                 <input type="submit" class="btn-enviar">
             </div>
-            <a class="cambiar-clave" href="olvide">Cambio de Clave</a>
             <a class="cambiar-clave" href="/">Volver Atras</a>
-            <a class="cambiar-clave" href="/crear">Crear un usuario</a>
         </form>
     </div>
 

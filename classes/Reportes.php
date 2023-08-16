@@ -4,6 +4,7 @@
 use TCPDF;
 
     require_once '../public/tcpdf/tcpdf.php';
+    date_default_timezone_set('America/Costa_Rica');
 
     class Reportes extends TCPDF{
 

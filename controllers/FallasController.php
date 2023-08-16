@@ -2,77 +2,85 @@
 
 
 namespace Controllers;
-
+use Model\Sistema;
 use MVC\Router;
-
 use Classes\Reportes;
+use Model\Fallas;
 
-use Model\Inventario;
-
-class InventarioController
+class FallasController
 {
-    public static function inventario(Router $router)
+    public static function fallas(Router $router)
     {
         session_start();
 
         isAuth();
-        $router->render('servicios/inventario', [
+        $router->render('servicios/fallas', [
 
         ]);
     }
 
-    public static function addProducto(Router $router)
+    public static function addFalla(Router $router)
     {
-        $router->render('servicios/agregarProducto', [
+        $router->render('servicios/agregarFallas', [
         ]);
     }
 
-    public static function updateInventory(Router $router)
+    public static function updateFalla(Router $router)
     {
-
+        session_start();
         function redondeo($numero){
             return round($numero/5) *5;
         }
-        session_start();
+        
         if (!is_numeric($_GET['id']))
             return;
 
-        $producto = Inventario::find($_GET['id']);
+            $falla = Fallas::find($_GET['id']);
+            $sistema = Sistema::all();
+
+            $selectedSistemaId = $falla->idSistemas;
+            $nombreSistema = '';
+            $sistemaId = $falla->idSistemas;
+
+            foreach ($sistema as $sistemaFalla) {
+                if ($sistemaFalla->id == $sistemaId) { // Usar $selectedSistemaId en lugar de $sistemaId
+                    $nombreSistema = $sistemaFalla->nombre_sistema;
+                    break;
+                }
+            }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $producto->sincronizar($_POST);
-            $producto->costo_iva = $producto->costo_bruto * ($producto->iva_producto / 100 + 1);
-            $producto->precio_cliente = $producto->costo_iva * ($producto->margen_utilidad/100+1) ;
-            $producto->costo_iva = round($producto->costo_iva / 5) * 5;
-            $producto->precio_cliente = round($producto->precio_cliente / 5) * 5;
-            $producto->guardar();
-            header('Location: /inventario');
+            $falla->sincronizar($_POST);
+            $falla->precio_reparacion_iva = $falla->precio_reparacion * ($falla->iva / 100 + 1);
+            $falla->precio_reparacion_iva = round($falla->precio_reparacion_iva /5)*5;
+            $falla->guardar();
+            header('Location: /fallas');
         }
-        $router->render('/servicios/editarProducto', [
-            'producto' => $producto
-  
+
+        $router->render('/servicios/actualizarFalla', [
+            'falla' => $falla,
+            'nombreSistema' => $nombreSistema, 
+            'selectedSistemaId' => $selectedSistemaId, 
+            'sistemas' => $sistema
         ]);
     }
 
     public static function crear()
     {
-        $producto = new Inventario($_POST);
+        $falla = new Fallas($_POST);
 
-        $producto->costo_iva = $producto->costo_bruto * ($producto->iva_producto / 100 + 1);
-        $producto->precio_cliente = $producto->costo_iva * ($producto->margen_utilidad/100+1) ;
-        $producto->costo_iva = round($producto->costo_iva / 5) * 5;
-        $producto->precio_cliente = round($producto->precio_cliente / 5) * 5;
-
+        $falla->precio_reparacion_iva = $falla->precio_reparacion * ($falla->iva / 100 + 1);
+        $falla->costo_iva = round($falla->costo_iva / 5) * 5;
+ 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-            $producto->sincronizar($_POST);
-            $resultado = $producto->guardar();
+            $falla->sincronizar($_POST);
+            $resultado = $falla->guardar();
             if ($resultado) {
-                header('Location: /inventario');
+                header('Location: /fallas');
             }
         }
     }
-
 
 
     public static function generarReporte()
@@ -128,7 +136,7 @@ class InventarioController
 
         $pdf->SetFont('helvetica', '', 10);
 
-        $productos = Inventario::all();
+        $productos = Fallas::all();
 
         foreach ($productos as $producto) {
             $pdf->Cell(10, 6, $producto->id, 1, 0, 'C');

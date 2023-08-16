@@ -3,76 +3,98 @@
 
 namespace Controllers;
 
+
+use Model\Fallas;
+use Model\Vehiculo;
 use MVC\Router;
 
 use Classes\Reportes;
 
-use Model\Inventario;
+use Model\Reparacion;
 
-class InventarioController
+class ReparacionesController
 {
-    public static function inventario(Router $router)
+    public static function reparaciones(Router $router)
     {
         session_start();
 
         isAuth();
-        $router->render('servicios/inventario', [
+        $router->render('servicios/reparaciones', [
 
         ]);
     }
 
-    public static function addProducto(Router $router)
+    public static function addreparacion(Router $router)
     {
-        $router->render('servicios/agregarProducto', [
+
+        $router->render('servicios/agregarReparaciones', [
         ]);
     }
 
-    public static function updateInventory(Router $router)
+    public static function updateReparacion(Router $router)
     {
-
-        function redondeo($numero){
-            return round($numero/5) *5;
-        }
         session_start();
+  
         if (!is_numeric($_GET['id']))
             return;
 
-        $producto = Inventario::find($_GET['id']);
+            $reparacion = Reparacion::find($_GET['id']);
+            $vehiculo = Vehiculo::all();
+            $falla = Fallas::all();
+
+            //Ver vehiculos
+            $selectedVehiculoId = $reparacion->idVehiculos;
+            $marca_vehiculo = '';
+            $vehiculoId = $reparacion->idVehiculos;
+
+            foreach($vehiculo as $vehiculoReparacion){
+                if($vehiculoReparacion->id == $vehiculoId){
+                    break;
+                }
+            }
+
+            //Ver Fallas
+            $selecteFallaId = $reparacion->idFallas;
+            $nombre_falla = '';
+            $fallaId = $reparacion->idFallas;
+
+            foreach($falla as $fallaReparacion){
+                if($fallaReparacion->id == $fallaId){
+                    break;
+                }
+            }
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $producto->sincronizar($_POST);
-            $producto->costo_iva = $producto->costo_bruto * ($producto->iva_producto / 100 + 1);
-            $producto->precio_cliente = $producto->costo_iva * ($producto->margen_utilidad/100+1) ;
-            $producto->costo_iva = round($producto->costo_iva / 5) * 5;
-            $producto->precio_cliente = round($producto->precio_cliente / 5) * 5;
-            $producto->guardar();
-            header('Location: /inventario');
+            $reparacion->sincronizar($_POST);
+            $reparacion->guardar();
+            header('Location: /reparaciones');
         }
-        $router->render('/servicios/editarProducto', [
-            'producto' => $producto
-  
+
+        $router->render('servicios/actualizarReparacion', [
+            'reparacion' => $reparacion,
+            'marcaVehiculo' => $marca_vehiculo,
+            'selectedVehiculoId' => $selectedVehiculoId,
+            'vehiculos' => $vehiculo,
+            'nombreFalla' => $nombre_falla, 
+            'selectedFallaId' => $selecteFallaId, 
+            'fallas' => $falla
         ]);
     }
 
     public static function crear()
     {
-        $producto = new Inventario($_POST);
-
-        $producto->costo_iva = $producto->costo_bruto * ($producto->iva_producto / 100 + 1);
-        $producto->precio_cliente = $producto->costo_iva * ($producto->margen_utilidad/100+1) ;
-        $producto->costo_iva = round($producto->costo_iva / 5) * 5;
-        $producto->precio_cliente = round($producto->precio_cliente / 5) * 5;
-
+        $reparacion = new Reparacion($_POST);
+ 
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-            $producto->sincronizar($_POST);
-            $resultado = $producto->guardar();
+            $reparacion->sincronizar($_POST);
+            $resultado = $reparacion->guardar();
             if ($resultado) {
-                header('Location: /inventario');
+                header('Location: /reparaciones');
             }
+            
         }
+        
     }
-
 
 
     public static function generarReporte()
@@ -128,7 +150,7 @@ class InventarioController
 
         $pdf->SetFont('helvetica', '', 10);
 
-        $productos = Inventario::all();
+        $productos = reparacion::all();
 
         foreach ($productos as $producto) {
             $pdf->Cell(10, 6, $producto->id, 1, 0, 'C');

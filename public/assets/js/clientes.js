@@ -1,74 +1,9 @@
 
-
-let btnCreaCodigo = document.querySelector(".abrir-codigo");
-
-    // Agrega un listener al botón para mostrar el SweetAlert cuando se haga clic
-    btnCreaCodigo.addEventListener("click", function () {
-        swal.fire({
-            title: 'Añadir Cliente',
-            html: `
-                <div class="formulario-crear">
-                    <form class="formulario" id="formularioCliente" enctype="multipart/form-data">
-                        <div class="campo">
-                            <label class="campo__label" for="nombre_propietario">Nombre del Cliente</label>
-                            <input class="campo__field" type="text" name="nombre_propietario" placeholder="Alexander"
-                                id="nombre_propietario">
-                        </div>
-                        <div class="campo">
-                            <label class="campo__label" for="apellido_propietario">Apellido del Cliente</label>
-                            <input class="campo__field" type="text" name="apellido_propietario" placeholder="Cantillo Aguilar"
-                                id="apellido_propietario">
-                        </div>
-                        <div class="campo">
-                            <label class="campo__label" for="cedula_propietario">Cedula del Cliente</label>
-                            <input class="campo__field" type="text" name="cedula_propietario" placeholder="207530987" id="cedula_propietario">
-                        </div>
-                    </form>
-                </div>`,
-            showCancelButton: true,
-            confirmButtonColor: '#0B3B59',
-            customClass: {
-                popup: 'ventanaModal-inventario'
-            },
-            preConfirm: () => {
-                // Obtener los datos del formulario
-                const formData = new FormData(document.getElementById("formularioCliente"));
-
-                return fetch('/crear-cliente', {
-                    method: 'POST',
-                    body: formData
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Hubo un problema al enviar el formulario.');
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    // Aquí procesas la respuesta del servidor (data) como desees
-                    Swal.fire({
-                        icon: "success",
-                        title: "¡Envío Exitoso!",
-                        text: "Se ha creado el cliente exitosamente.",
-                    });
-                })
-                .catch(error => {
-                    // Mostrar SweetAlert de error en caso de fallo
-                    Swal.fire({
-                        icon: "error",
-                        title: "Error",
-                        text: error.message,
-                    });
-                });
-            }
-        });
-    });
-
 let dataTable;
 let dataTableIsInitialized = false;
 
 const dataTableOptions = {
-    pageLength: 3,
+    pageLength: 10,
     destroy: true,
     language: {
         lengthMenu: "Mostrar _MENU_ registros por página",
@@ -107,13 +42,26 @@ const listclientes = async () => {
         clientes.forEach((clientes) => {
             content += `
             <tr>
-                <td>${clientes.id_propietario}</td>
+                <td>${clientes.id}</td>
                 <td>${clientes.nombre_propietario}</td>
                 <td>${clientes.apellido_propietario}</td>
                 <td>${clientes.cedula_propietario}</td>
-                <td>
-                 <button class="btn-ver btn-editar" data-id=${clientes.id_propietario}>Editar</button>
-                 <button class="btn-ver" data-id=${clientes.id_propietario}>Eliminar</button></td>
+                <td class="contenedor-formact">
+                    <div class="contenido-opciones">
+                        <div>
+                            <form action="/api/eliminarCliente" method="POST">
+                                <input type="hidden" name="id" value="${clientes.id}">
+                                <input type="submit" class="btn-ver" value="Eliminar">
+                            </form>
+                        </div>
+                        <div>
+                            <form action="/updateClient" method="GET">
+                                <input type="hidden" name="id" value="${clientes.id}">
+                                <input type="submit" class="btn-ver" value="Editar">
+                            </form>
+                        </div>
+                    </div>
+                </td>
             </tr>`;
         });
         tableBody_clientes.innerHTML = content;
@@ -127,6 +75,10 @@ window.addEventListener("load", async () => {
     await initDataTable();
 
 });
+
+
+
+
 
 
 

@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +7,8 @@ session_start();
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Taller AK</title>
-  <link rel="stylesheet" href="./assets/css/style.css"/>
+  <link rel="stylesheet" href="./assets/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
@@ -21,7 +20,9 @@ session_start();
       </div>
       <nav class="navegacion-principal">
         <a href="/login">Cerrar Sesión</a>
-        <a href="/informacionUsuario"><?php echo $_SESSION['nombre']; ?></a>
+        <a href="/informacionUsuario">
+          <?php echo $_SESSION['nombre']; ?>
+        </a>
       </nav>
     </div>
   </header>
@@ -36,7 +37,7 @@ session_start();
           <img src="./assets/img/reparacion vehiculo.jpg">
         </div>
         <div class="info-servicio">
-          <h4>Reparación de Vehículos</h4>
+          <h4>Registo de Vehículos</h4>
         </div>
       </a>
     </article>
@@ -64,7 +65,7 @@ session_start();
     </article>
 
     <article class="card-servicio">
-      <a class="link" href="#">
+      <a class="link" href="/usuarios">
         <div class="img-servicio">
           <img src="./assets/img/user.png">
         </div>
@@ -74,14 +75,226 @@ session_start();
       </a>
     </article>
 
+    <article class="card-servicio">
+      <a class="link" href="/sistemas">
+        <div class="img-servicio">
+          <img src="./assets/img/motor-coche-moderno_40345-420.avif">
+        </div>
+        <div class="info-servicio">
+          <h4>Sistemas</h4>
+        </div>
+      </a>
+    </article>
 
+    <article class="card-servicio">
+      <a class="link" href="/fallas">
+        <div class="img-servicio">
+          <img src="./assets/img/119-1190741_black-red-warning-svg-clip-arts-warning-icon.png">
+        </div>
+        <div class="info-servicio">
+          <h4>Fallas</h4>
+        </div>
+      </a>
+    </article>
+
+    <article class="card-servicio">
+      <a class="link" href="/reparaciones">
+        <div class="img-servicio">
+          <img
+            src="./assets/img/hombre-abrio-capo-automovil-reparar-vehiculo-coche-averiado-ilustracion-vectorial-plana_124715-1548.avif">
+        </div>
+        <div class="info-servicio">
+          <h4>Fallos en Carros</h4>
+        </div>
+      </a>
+    </article>
+  </section>
+
+  <h2 class="titulo-servicios graficotitle">Graficos</h2>
+  <section class="section-graficos">
+
+    <div class="grafico-producto">
+      <h2 class="titulo-servicios">Stock Productos</h2>
+
+      <canvas id="myChart">
+        <script>
+          const ctx = document.getElementById('myChart');
+          let myChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+              datasets: [{
+                label: 'Stock de productos',
+                backgroundColor: ['#6bf1ab', '#63d69f', '#438c6c']
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+          let urlProductos = 'http://localhost:3000/api/inventario';
+          fetch(urlProductos)
+            .then(response => response.json())
+            .then(datos => mostrar(datos))
+            .catch(error => console.log(error))
+
+          const mostrar = (productos) => {
+            productos.forEach(element => {
+              myChart.data['labels'].push(element.nombre_producto)
+              myChart.data['datasets'][0].data.push(element.cantidad)
+              myChart.update();
+            });
+          }
+
+        </script>
+      </canvas>
+    </div>
+
+
+
+    <div class="grafico-producto">
+      <h2 class="titulo-servicios">Clientes Frecuentes</h2>
+
+      <canvas id="myChart2">
+        <script>
+          const ctx2 = document.getElementById('myChart2');
+          let myChart2 = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+              datasets: [{
+                label: 'Clientes frecuentes',
+                backgroundColor: ['#6bf1ab', '#63d69f', '#438c6c']
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+          let urlClientes = 'http://localhost:3000/api/clientes';
+          fetch(urlClientes)
+            .then(response => response.json())
+            .then(datos => mostrarClientes(datos))
+            .catch(error => console.log(error))
+
+          const mostrarClientes = (clientes) => {
+            clientes.forEach(element => {
+              myChart2.data['labels'].push(element.nombre_propietario)
+              myChart2.data['datasets'][0].data.push(element.frecuencia)
+              myChart2.update();
+            });
+          }
+
+        </script>
+
+      </canvas>
+
+
+    </div>
+
+
+    <div class="grafico-producto">
+      <h2 class="titulo-servicios">Top 4 fallos frecuentes</h2>
+
+      <canvas id="myChart3">
+        <script>
+          const ctx3 = document.getElementById('myChart3');
+          let myChart3 = new Chart(ctx3, {
+            type: 'doughnut',
+            data: {
+              datasets: [{
+                label: 'Fallas frecuentes',
+                backgroundColor: ['#438c6c', '#6bf1ab', '#337351', '#57C48B']
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+          let urlGrafico3 = 'http://localhost:3000/api/grafico3';
+          fetch(urlGrafico3)
+            .then(response => response.json())
+            .then(datos => mostrarGrafico3(datos))
+            .catch(error => console.log(error))
+
+          const mostrarGrafico3 = (clientes) => {
+            clientes.forEach(element => {
+              myChart3.data['labels'].push(element.nombre_falla)
+              myChart3.data['datasets'][0].data.push(element.frecuencia)
+              myChart3.update();
+            });
+          }
+
+        </script>
+
+      </canvas>
+
+
+    </div>
+
+
+    <div class="grafico-producto">
+      <h2 class="titulo-servicios">Top 4 sistemas con mas fallas</h2>
+
+      <canvas id="myChart4">
+        <script>
+          const ctx4 = document.getElementById('myChart4');
+          let myChart4 = new Chart(ctx4, {
+            type: 'doughnut',
+            data: {
+              datasets: [{
+                label: 'Sistemas con fallas mas frecuentes',
+                backgroundColor: ['#438c6c', '#6bf1ab', '#337351', '#57C48B']
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+          let urlGrafico4 = 'http://localhost:3000/api/grafico4';
+          fetch(urlGrafico4)
+            .then(response => response.json())
+            .then(datos => mostrarGrafico4(datos))
+            .catch(error => console.log(error))
+
+          const mostrarGrafico4 = (clientes) => {
+            clientes.forEach(element => {
+              myChart4.data['labels'].push(element.nombre_sistema)
+              myChart4.data['datasets'][0].data.push(element.frecuencia)
+              myChart4.update();
+            });
+          }
+
+        </script>
+
+      </canvas>
+
+
+    </div>
 
   </section>
+
+
+
 
   <footer class="footer">
 
     <div class="contenido-footer">
-      
+
       <div class="imagen-logo">
         <img src="./assets/img/logoActualAK2.png.png">
       </div>
@@ -101,6 +314,7 @@ session_start();
 
   <script src="./assets/js/principal.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </body>
 
 </html>

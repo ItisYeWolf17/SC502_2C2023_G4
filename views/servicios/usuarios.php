@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,17 +7,14 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vehiculos</title>
+    <title>usuarios</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <link rel="stylesheet" href="./assets/css/clientes.css" />
+    <link rel="stylesheet" href="./assets/css/usuarios.css" />
     <link rel="stylesheet" href="./assets/css/table.css"/>
     <script src="https://kit.fontawesome.com/3e4411f84c.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <!-- DataTable -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" />
-
-
-
 </head>
 
 <body>
@@ -31,40 +27,39 @@ session_start();
                 </a>
             </div>
             <nav class="navegacion-principal">
-                <a href="/logout">Cerrar Sesión</a>
+                <a href="./login.html">Cerrar Sesión</a>
                 <a href="#"><?php echo $_SESSION['nombre']; ?></a>
             </nav>
         </div>
     </header>
-    <h2 class="titulo-servicios">Estas en el Modulo Vehiculos</h2>
+    <h2 class="titulo-servicios">Estas en el Modulo Usuarios</h2>
 
-    
 
 
     
 <div class="container-table">
 
-    <a class="titulo-servicios abrir-codigo" href="/addVehiculo">Añadir Vehiculo</a>
+    <a class="titulo-servicios abrir-codigo" href="/crear">Añadir usuario</a>
 
-    <form action="/reporte-vehiculos" method="post">
+    <form action="/reporte-usuarios" method="post">
         <button class="titulo-servicios abrir-codigo">Generar Reporte</button>
     </form>
-
-    <table id="datatable_vehiculos" class="datatable">
+    <table id="datatable_users" class="datatable">
         
         <thead>
             
             <tr>
                 <th class="centered">ID</th>
-                <th class="centered ">Placa</th>
-                <th class="centered">Marca</th>
-                <th class="centered">Año</th>
-                <th class="centered">Propietario</th>
-                <th class="centered">Acciones</th>
+                <th class="centered ">Nombre</th>
+                <th class="centered">Apellido</th>
+                <th class="centered">Cedula</th>
+                <th class="centered">Rol</th>
+                <th class="centered">Correo</th>
 
+                <th class="centered">Acciones</th>
             </tr>
         </thead>
-        <tbody id="tableBody_vehiculos"></tbody>
+        <tbody id="tableBody_users"></tbody>
     </table>
 </div>
 
@@ -93,8 +88,7 @@ session_start();
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 
     <!--JS PROPIO-->
-    <script src="./assets/js/vehiculos.js"></script>
-    
+    <script src="./assets/js/usuarios.js"></script>
 </body>
 
 </html>

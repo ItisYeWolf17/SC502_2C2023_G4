@@ -1,11 +1,5 @@
 <?php
 session_start();
-
-use Model\Cliente;
-
-$cliente = new Cliente();
-
-
 ?>
 
 <!DOCTYPE html>
@@ -39,29 +33,11 @@ $cliente = new Cliente();
     </header>
 
     <div class="formulario-crear">
-    <form method="POST" action="/crear-cliente">
+    <form method="POST" action="/crear-sistema">
         <div class="campo">
-            <label class="campo__label" for="nombre_propietario">Nombre del Cliente</label>
-            <input class="campo__field" type="text" name="nombre_propietario" placeholder="Alexander"
-            id="nombre_propietario" value="<?php $cliente -> nombre_propietario;?>">
-        </div>
-
-        <div class="campo">
-            <label class="campo__label" for="apellido_propietario">Apellido del Cliente</label>
-            <input class="campo__field" type="text" name="apellido_propietario" placeholder="Cantillo Aguilar"
-            id="apellido_propietario" value="<?php $cliente -> apellido_propietario;?>">
-        </div>
-
-        <div class="campo">
-            <label class="campo__label" for="cedula_propietario">Cedula del Cliente</label>
-            <input class="campo__field" type="text" name="cedula_propietario" placeholder="207530987" id="cedula_propietario"
-            value="<?php $cliente -> cedula_propietario;?>">
-        </div>
-
-        <div class="campo">
-            <label class="campo__label" for="frecuencia">Frecuencia</label>
-            <input class="campo__field" type="text" name="frecuencia" placeholder="207530987" id="frecuencia"
-            value="<?php $cliente -> frecuencia;?>">
+            <label class="campo__label" for="nombre_sistema">Nombre del Sistema</label>
+            <input class="campo__field" type="text" name="nombre_sistema" placeholder="Direccion"
+            id="nombre_sistema" value="<?php $sistema -> nombre_sistema;?>">
         </div>
 
         <div class="campo">
